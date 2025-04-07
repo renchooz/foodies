@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playwrite+DE+Grund:wght@100..400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+  font-family: "Outfit", sans-serif;
+}
+
+@theme{
+  --primary-color: "#3AAFA9";
+  --secondary-color:"#DEF2F1";
+}
