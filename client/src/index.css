@@ -6,7 +6,7 @@
   font-family: "Outfit", sans-serif;
 }
 
-@theme{
-  --primary-color: "#3AAFA9";
-  --secondary-color:"#DEF2F1";
+@theme {
+  --color-primary: "#3AAFA9";
+  --color-secondary :"#DEF2F1";
 }
