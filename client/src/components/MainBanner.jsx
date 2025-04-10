@@ -1,6 +1,7 @@
 import React from 'react'
 import banner from '/banner.jpeg'
 import banner2 from "/homepage.jpg"
+import { FaLongArrowAltRight } from "react-icons/fa";
 
 const MainBanner = () => {
   return (
@@ -18,8 +19,8 @@ const MainBanner = () => {
             </div>
             {/* mobile btn */}
             <div className='absolute md:hidden sm:hidden top-0 h-full w-full flex flex-col items-center justify-center text-center'>
-            <h1 className='text-[5vw] w-[40%] '> From your favorite, Restaurants to your Table</h1>
-            <button className='hover:bg-red-700 hover:text-white transition backdrop-blur-xl mt-6 px-4 py-2 rounded-xl border border-black'>View Offers</button>
+            <h1 className='text-[5vw] w-[40%] font-bold '> From your favorite, Restaurants to your Table</h1>
+            <button className='hover:bg-red-700 flex items-center gap-2 hover:scale-110 hover:text-white transition backdrop-blur-xl mt-6 px-4 py-2 rounded-xl border border-black'>View Offers <FaLongArrowAltRight /></button>
             </div>
         
     </div>
