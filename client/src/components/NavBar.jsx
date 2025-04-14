@@ -81,7 +81,7 @@ const NavBar = () => {
     setshowUserLogin(true)}
    }
    
-   className="cursor-pointer px-6 py-2 mt-2 bg-[#3AAFA9] hover:bg-[#DEF2F1] transition text-white rounded-full text-sm">
+   className="cursor-pointer px-6 py-2 mt-2 bg-[#E9AB54] hover:bg-[#DEF2F1] transition text-white rounded-full text-sm">
    Login
  </button>
 ):(

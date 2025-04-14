@@ -9,7 +9,7 @@ const FoodList = () => {
     <>
     <p className="text-2xl mt-10 font-bold mb-10">Best Seller</p>
     <div className="flex flex-wrap items-center justify-center gap-4">
-      { product.filter((products)=>products.available).slice(0,6).map((item) => (
+      { product.filter((products)=>products.available).slice(0,10).map((item) => (
         <FoodCard key={item.id} product={item} currency={currency} />
       ))}
     </div>

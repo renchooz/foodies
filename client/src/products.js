@@ -58,8 +58,49 @@ export const foodItems = [
     offerPrice: 110,
     available: true,
     category: "Beverages"
+  },
+  {
+    id: 7,
+    name: "Paneer Tikka",
+    image: "https://img.freepik.com/premium-photo/barbecue-paneer-tikka-kabab-indian-tandoori-cottage-cheese-cubes-red-white-sauce-sticks-served-plate-with-green-chutney-colourful-wooden-table-top-selective-focus_466689-59152.jpg?w=1380",
+    rating: 4.4,
+    price: 200,
+    offerPrice: 180,
+    available: true,
+    category: "Indian"
+  },
+  {
+    id: 8,
+    name: "French Fries",
+    image: "https://img.freepik.com/premium-photo/french-fries-paper-bag-with-tomato-sauce-isolated-white-background_41158-22989.jpg?w=740",
+    rating: 4.2,
+    price: 90,
+    offerPrice: 75,
+    available: true,
+    category: "Snacks"
+  },
+  {
+    id: 9,
+    name: "Chicken Biryani",
+    image: "https://img.freepik.com/premium-photo/dum-handi-chicken-biryani-is-prepared-earthen-clay-pot-called-haandi-popular-indian-non-vegetarian-food_466689-52246.jpg?w=1380",
+    rating: 4.9,
+    price: 320,
+    offerPrice: 280,
+    available: true,
+    category: "Indian"
+  },
+  {
+    id: 10,
+    name: "Strawberry Milkshake",
+    image: "https://img.freepik.com/premium-photo/strawberry-milkshake-glass_1004890-4158.jpg?w=740",
+    rating: 4.5,
+    price: 160,
+    offerPrice: 140,
+    available: true,
+    category: "Beverages"
   }
 ];
+
 
 
  export const whyWeAreBest = [
