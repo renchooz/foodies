@@ -6,7 +6,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 const MainBanner = () => {
   return (
     <div className='relative' >
-        <img src={banner} alt="banner" className= ' w-full h-[70vh] object-cover hidden md:block sm:block rounded-xl '/>
+        <img src={banner} alt="banner" className= ' w-full h-[75vh] object-cover hidden md:block sm:block rounded-xl '/>
         {/* mobile banner */}
         <img src={banner2} alt="banner" className=' w-full md:hidden rounded-2xl sm:hidden h-96 border border-gray-800  object-cover' />
             <div className='absolute w-[50%] md:w-[60%]   h-full  top-0 hidden md:flex sm:flex flex-col justify-center   pl-4 md:pl-6  '>

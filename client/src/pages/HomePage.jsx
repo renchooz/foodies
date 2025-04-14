@@ -3,6 +3,7 @@ import MainBanner from '../components/MainBanner'
 import Categories from '../components/Categories'
 import BestSeller from '../components/BestSeller'
 import WhyWeAreBest from '../components/WhyWeAreBest'
+import FixedBtm from '../components/FixedBtm'
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
         <Categories/>
         <BestSeller/>
         <WhyWeAreBest/>
+        <FixedBtm/>
         </div>
   )
 }
