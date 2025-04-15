@@ -14,6 +14,8 @@ export const AppContextProvider = ({children})=>{
     const [showuserLogin, setshowUserLogin] = useState(false)
     const [product, setproduct] = useState([])
     const [CardItems, setCardItems] = useState({})
+    const [SearchQuerry, setSearchQuerry] = useState({})
+
     const WhyWeBestData = whyWeAreBest
      
     let fetchProducts = async ()=>{
@@ -65,7 +67,7 @@ export const AppContextProvider = ({children})=>{
   { name: "Diet Food", image: "/dietfood.webp", path: "/category/diet-food" },
 ];
 
-    const value = {nevigate,User,setUser,isSeller,setisSeller,setshowUserLogin,showuserLogin,categories,product,currency,addCartItem,updateCartItem,removeformCart,CardItems,WhyWeBestData}
+    const value = {nevigate,User,setUser,isSeller,setisSeller,setshowUserLogin,showuserLogin,categories,product,currency,addCartItem,updateCartItem,removeformCart,CardItems,WhyWeBestData,SearchQuerry,setSearchQuerry}
           return <AppContext.Provider value={value}>
             {children}
           </AppContext.Provider>

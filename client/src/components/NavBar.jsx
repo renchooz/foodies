@@ -1,21 +1,28 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 import logo from "/logo.png"
 import profile from '/logo.png'
 import { useAppContext } from '../context/AppContext'
 
 const NavBar = () => {
     const [open, setOpen] = React.useState(false)
-    let {User , setUser, nevigate, setshowUserLogin} = useAppContext()
+    let {User , setUser, nevigate, setshowUserLogin, SearchQuerry , setSearchQuerry} = useAppContext()
+  let prod = useLocation().pathname.includes("product")
+
     let logout  = async() =>{
        setUser(null)
        nevigate("/")
     }
+    useEffect(()=>{
+      if(SearchQuerry.length>0){
+        nevigate("/product")
+      }
+    },[SearchQuerry])
   return (
     <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300  relative transition-all">
 
           <NavLink to={'/'} onClick={()=>setOpen(false)}>
-            <img className='rounded-full  w-20' src={logo} alt="" />
+            {!prod &&<img className='rounded-full  w-20' src={logo} alt="" />}
           </NavLink>
 
             {/* Desktop Menu */}
@@ -25,7 +32,7 @@ const NavBar = () => {
                 <NavLink to={"/product"} className="hover:text-[#E9AB54]">Todays Special</NavLink>
 
                 <div className="hidden lg:flex items-center text-sm gap-2 border bg-[#DEF2F1] px-3 rounded-full">
-                    <input className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500 text-[#E9AB54] " type="text" placeholder="Search products" />
+                    <input onChange={(e)=>setSearchQuerry(e.target.value)} className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500 text-[#E9AB54] " type="text" placeholder="Search products" />
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.836 10.615 15 14.695" stroke="#7A7B7D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
                         <path clip-rule="evenodd" d="M9.141 11.738c2.729-1.136 4.001-4.224 2.841-6.898S7.67.921 4.942 2.057C2.211 3.193.94 6.281 2.1 8.955s4.312 3.92 7.041 2.783" stroke="#7A7B7D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
@@ -51,15 +58,16 @@ const NavBar = () => {
                   </div>
                 )}
             </div>
-
-            <button onClick={() => open ? setOpen(false) : setOpen(true)} aria-label="Menu" className="sm:hidden">
+            {prod ?(<input onChange={(e)=>setSearchQuerry(e.target.value)} className="py-1.5 w-full md:hidden border text-center rounded-full bg-transparent outline-none placeholder-gray-500 text-[#E9AB54] " type="text" placeholder="Search products" />): <button onClick={() => open ? setOpen(false) : setOpen(true)} aria-label="Menu" className="sm:hidden">
                 {/* Menu Icon SVG */}
                 <svg width="21" height="15" viewBox="0 0 21 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="21" height="1.5" rx=".75" fill="#426287" />
                     <rect x="8" y="6" width="13" height="1.5" rx=".75" fill="#426287" />
                     <rect x="6" y="13" width="15" height="1.5" rx=".75" fill="#426287" />
                 </svg>
-            </button>
+            </button>}
+
+           
 
             {/* Mobile Menu */}
             <div
@@ -68,7 +76,7 @@ const NavBar = () => {
   `}
 >
   <NavLink to={"/"} onClick={() => setOpen(false)}>Home</NavLink>
-  <NavLink to={"/products"} onClick={() => setOpen(false)}>Special Offers</NavLink>
+  <NavLink to={"/product"} onClick={() => setOpen(false)}>Special Offers</NavLink>
   <NavLink to={"/about"} onClick={() => setOpen(false)}>About</NavLink>
   {
     User &&
