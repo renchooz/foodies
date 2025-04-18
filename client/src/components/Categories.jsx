@@ -9,7 +9,7 @@ const Categories = () => {
     <div className="flex flex-wrap gap-16 items-center justify-center">
       {categories.map((category, idx) => (
         <div key={idx} onClick={()=>{
-            nevigate(`/food-category/${category.path.toLowerCase()}`)
+            nevigate(`/category/${category.path.toLowerCase()}`)
             scrollTo(0,0)
 
         }} className="">

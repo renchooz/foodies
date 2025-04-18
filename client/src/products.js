@@ -1,106 +1,136 @@
 export const foodItems = [
+  // 🍗 Non-Veg
   {
     id: 1,
-    name: "Margherita Pizza",
-    image: "/Margherita.png",
-    rating: 4.5,
-    price: 300,
-    offerPrice: 250,
+    name: "Chicken Biryani",
+    image: "/biryani.jpg",
+    rating: 4.8,
+    price: 320,
+    offerPrice: 280,
     available: true,
-    category: "Pizza"
+    category: "Non-Veg"
   },
   {
     id: 2,
-    name: "Cheeseburger",
-    image: "https://img.freepik.com/free-photo/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese_90220-1063.jpg?t=st=1744455256~exp=1744458856~hmac=11fb7c6003ab6fb169759a0fee8efde1e6b26b857f851feafece1491c03168ea&w=826",
+    name: "Butter Chicken",
+    image: "/butter-chicken.png",
     rating: 4.7,
-    price: 220,
-    offerPrice: 200,
+    price: 350,
+    offerPrice: 320,
     available: true,
-    category: "Burger"
+    category: "Non-Veg"
   },
+
+  // 🥡 Chinese
   {
     id: 3,
-    name: "Sushi Platter",
-    image: "https://img.freepik.com/free-photo/traditional-fresh-japanese-sushi-rolls_2829-8479.jpg?t=st=1744455333~exp=1744458933~hmac=2f02ad82997f51a53e1cae993ed7710b621dd04d0d85c5a1bb9c8eb4bea8d993&w=740",
-    rating: 4.9,
-    price: 550,
-    offerPrice: 500,
+    name: "Chilli Paneer",
+    image: "/chilli-paneer.jpg",
+    rating: 4.5,
+    price: 250,
+    offerPrice: 220,
     available: true,
-    category: "Japanese"
+    category: "Chinese"
   },
   {
     id: 4,
-    name: "Pasta Alfredo",
-    image: "https://img.freepik.com/free-photo/tagliatelle-pasta-with-tomatoes-chicken_2829-18003.jpg?t=st=1744455371~exp=1744458971~hmac=62e4062c7918fe6a71c2ca53104e7af50398acd92ceacea9bc8363f105fa4993&w=1380",
-    rating: 4.3,
-    price: 270,
-    offerPrice: 240,
+    name: "Manchurian",
+    image: "/manchurian.jpg",
+    rating: 4.4,
+    price: 240,
+    offerPrice: 210,
     available: true,
-    category: "Pasta"
+    category: "Chinese"
   },
+
+  // 🍜 Noodles
   {
     id: 5,
-    name: "Chocolate Cake",
-    image: "https://img.freepik.com/premium-photo/chocolate-cake-white_62193-898.jpg?w=996",
-    rating: 4.8,
-    price: 150,
-    offerPrice: 120,
+    name: "Hakka Noodles",
+    image: "/hakka-noodles.jpg",
+    rating: 4.3,
+    price: 180,
+    offerPrice: 160,
     available: true,
-    category: "Dessert"
+    category: "Noodles"
   },
   {
     id: 6,
-    name: "Cold Coffee",
-    image: "https://img.freepik.com/free-photo/delicious-coffee-cup-indoors_23-2150691359.jpg?t=st=1744545277~exp=1744548877~hmac=7a37d8e815f23bcfce8e19b0a2aa84cd03653faab3e64b4a172f6b10bce0d528&w=740",
-    rating: 4.6,
-    price: 130,
-    offerPrice: 110,
-    available: true,
-    category: "Beverages"
-  },
-  {
-    id: 7,
-    name: "Paneer Tikka",
-    image: "https://img.freepik.com/premium-photo/barbecue-paneer-tikka-kabab-indian-tandoori-cottage-cheese-cubes-red-white-sauce-sticks-served-plate-with-green-chutney-colourful-wooden-table-top-selective-focus_466689-59152.jpg?w=1380",
-    rating: 4.4,
+    name: "Schezwan Noodles",
+    image: "/schezwan-noodles.jpg",
+    rating: 4.2,
     price: 200,
     offerPrice: 180,
     available: true,
-    category: "Indian"
+    category: "Noodles"
+  },
+
+  // 🥦 Veg
+  {
+    id: 7,
+    name: "Veg Pulao",
+    image: "/veg-pulao.jpg",
+    rating: 4.4,
+    price: 210,
+    offerPrice: 190,
+    available: true,
+    category: "Veg"
   },
   {
     id: 8,
+    name: "Palak Paneer",
+    image: "/palak-paneer.jpg",
+    rating: 4.6,
+    price: 240,
+    offerPrice: 220,
+    available: true,
+    category: "Veg"
+  },
+
+  // 🍔 Fast Food
+  {
+    id: 9,
     name: "French Fries",
-    image: "https://img.freepik.com/premium-photo/french-fries-paper-bag-with-tomato-sauce-isolated-white-background_41158-22989.jpg?w=740",
+    image: "/fries.jpg",
     rating: 4.2,
     price: 90,
     offerPrice: 75,
     available: true,
-    category: "Snacks"
-  },
-  {
-    id: 9,
-    name: "Chicken Biryani",
-    image: "https://img.freepik.com/premium-photo/dum-handi-chicken-biryani-is-prepared-earthen-clay-pot-called-haandi-popular-indian-non-vegetarian-food_466689-52246.jpg?w=1380",
-    rating: 4.9,
-    price: 320,
-    offerPrice: 280,
-    available: true,
-    category: "Indian"
+    category: "Fast Food"
   },
   {
     id: 10,
-    name: "Strawberry Milkshake",
-    image: "https://img.freepik.com/premium-photo/strawberry-milkshake-glass_1004890-4158.jpg?w=740",
+    name: "Cheeseburger",
+    image: "/burger.jpg",
     rating: 4.5,
-    price: 160,
-    offerPrice: 140,
+    price: 220,
+    offerPrice: 200,
     available: true,
-    category: "Beverages"
+    category: "Fast Food"
+  },
+
+  // 🥗 Diet Food
+  {
+    id: 11,
+    name: "Quinoa Salad",
+    image: "/quinoa-salad.jpg",
+    rating: 4.7,
+    price: 260,
+    offerPrice: 240,
+    available: true,
+    category: "Diet Food"
+  },
+  {
+    id: 12,
+    name: "Oats Bowl",
+    image: "/oats-bowl.jpg",
+    rating: 4.5,
+    price: 180,
+    offerPrice: 160,
+    available: true,
+    category: "Diet Food"
   }
 ];
-
 
 
  export const whyWeAreBest = [

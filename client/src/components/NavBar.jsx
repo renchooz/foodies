@@ -16,6 +16,7 @@ const NavBar = () => {
     useEffect(()=>{
       if(SearchQuerry.length>0){
         nevigate("/product")
+       
       }
     },[SearchQuerry])
   return (

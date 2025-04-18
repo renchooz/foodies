@@ -59,12 +59,12 @@ export const AppContextProvider = ({children})=>{
     
   const categories= [
    
-  { name: "Non-Veg", image: "/non-veg.png", path: "/category/non-veg" },
-  { name: "Chinese", image: "/chinese.jpg", path: "/category/chinese" },
-  { name: "Noodles", image: "/noodle.png", path: "/category/noodles" },
-  { name: "Veg", image: "/veg.png", path: "/category/veg" },
-  { name: "Fast Food", image: "/fastfood.webp", path: "/category/fast-food" },
-  { name: "Diet Food", image: "/dietfood.webp", path: "/category/diet-food" },
+  { name: "Non-Veg", image: "/non-veg.png", path: "non-veg" },
+  { name: "Chinese", image: "/chinese.jpg", path: "chinese" },
+  { name: "Noodles", image: "/noodle.png", path: "noodles" },
+  { name: "Veg", image: "/veg.png", path: "veg" },
+  { name: "Fast Food", image: "/fastfood.webp", path: "fast food" },
+  { name: "Diet Food", image: "/dietfood.webp", path: "diet food" },
 ];
 
     const value = {nevigate,User,setUser,isSeller,setisSeller,setshowUserLogin,showuserLogin,categories,product,currency,addCartItem,updateCartItem,removeformCart,CardItems,WhyWeBestData,SearchQuerry,setSearchQuerry}
