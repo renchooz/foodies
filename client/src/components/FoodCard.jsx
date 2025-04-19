@@ -10,7 +10,7 @@ const FoodCard = ({ product, currency }) => {
     <div
       onClick={() => {
         nevigate(`/category/${product.category}/${product.id}`);
-        window.scrollTo(0,0)
+        window.scrollTo(0, 0);
       }}
       className="border  border-gray-500/20 rounded-md md:px-4  py-2 bg-[#F7F7F7] min-w-40 max-w-40 md:min-w-60 md:max-w-60 w-full"
     >
@@ -69,15 +69,20 @@ const FoodCard = ({ product, currency }) => {
             {!CardItems[product.id] ? (
               <button
                 className="flex items-center justify-center gap-1 bg-[#E9AB54] border border-indigo-300 md:w-[80px] w-[64px] h-[34px] rounded text-white font-medium"
-                onClick={() => addCartItem(product.id)}
+                onClick={(e) => {
+                  addCartItem(product.id);
+                  e.stopPropagation()
+
+                }}
               >
                 Add
               </button>
             ) : (
               <div className="flex items-center justify-center gap-2 md:w-20 w-16 h-[34px] bg-[#fff2d8] rounded select-none">
                 <button
-                  onClick={() => {
+                  onClick={(e) => {
                     removeformCart(product.id);
+                    e.stopPropagation()
                   }}
                   className="cursor-pointer text-md px-2 h-full"
                 >
@@ -85,8 +90,9 @@ const FoodCard = ({ product, currency }) => {
                 </button>
                 <span className="w-5 text-center">{CardItems[product.id]}</span>
                 <button
-                  onClick={() => {
+                  onClick={(e) => {
                     addCartItem(product.id);
+                    e.stopPropagation()
                   }}
                   className="cursor-pointer text-md px-2 h-full"
                 >

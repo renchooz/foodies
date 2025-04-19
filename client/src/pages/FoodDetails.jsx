@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
+import FoodCard from "../components/FoodCard";
 
 const FoodDetails = () => {
   const { id } = useParams();
@@ -76,28 +77,7 @@ const FoodDetails = () => {
           <h3 className="text-2xl font-semibold mb-4">Related Items</h3>
           <div className="grid grid-cols-2  md:grid-cols-3 gap-6">
             {relatedProducts.map((item) => (
-              <div key={item.id} className="bg-gray-100 p-4 rounded-xl shadow">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-full h-40 object-cover rounded-md mb-2"
-                />
-                <h4 className="text-lg font-bold">{item.name}</h4>
-                <p className="text-sm text-gray-600 mb-1">{item.category}</p>
-
-                <div className="flex  justify-between items-center">
-                  <div className="text-[#E9AB54] font-semibold">
-                    ₹{item.price}
-                    </div>
-                    <button
-                      onClick={() => addCartItem(food)}
-                      className="md:px-4 md:py-2 px-2 py-1 bg-[#E9AB54] hover:bg-blue-700 text-white text-sm rounded-xl"
-                    >
-                      Add
-                    </button>
-                  
-                </div>
-              </div>
+             <FoodCard key={item.id} product={item}/>
             ))}
           </div>
         </div>
