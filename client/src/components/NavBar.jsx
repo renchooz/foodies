@@ -71,11 +71,22 @@ const NavBar = () => {
            
 
             {/* Mobile Menu */}
+          
             <div
   className={`absolute left-0 w-full bg-white z-10 shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden transition-all duration-200 ease-in-out
     ${open ? 'flex top-[120px] opacity-100 pointer-events-auto' : 'top-0 opacity-0 pointer-events-none flex'}
   `}
+  
 >
+<div onClick={() => { setOpen(false); nevigate("/cart") }} className="flex items-center gap-2 mt-3 cursor-pointer">
+  
+  <span className="relative">
+    <span className="text-black text-sm">Cart</span>
+    <span className="absolute -top-2 -right-3 text-xs text-black bg-[#E9AB54] w-[18px] h-[18px] rounded-full flex items-center justify-center">3</span>
+  </span>
+</div>
+
+
   <NavLink to={"/"} onClick={() => setOpen(false)}>Home</NavLink>
   <NavLink to={"/product"} onClick={() => setOpen(false)}>Special Offers</NavLink>
   <NavLink to={"/about"} onClick={() => setOpen(false)}>About</NavLink>
@@ -100,6 +111,7 @@ const NavBar = () => {
 )}
  
 </div>
+
 
 
         </nav>
