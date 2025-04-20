@@ -39,7 +39,7 @@ const FoodDetails = () => {
   }
 
   return (
-    <div className="w-full mx-auto p-6 md:mt-10 mt-3 bg-white shadow-xl rounded-2xl">
+    <div className="w-full mx-auto p-6  mt-3 bg-white shadow-xl rounded-2xl">
       <div className="flex h-[30%] flex-col   ">
         <img
           src={food.image}
@@ -62,13 +62,27 @@ const FoodDetails = () => {
               ₹{food.price}
             </div>
           </div>
-
-          <button
-            onClick={() => addCartItem(food)}
-            className="px-4 py-2 bg-[#E9AB54] hover:bg-[#d1943f] text-white rounded-xl"
+<div className="gap-4 flex">
+<button
+            onClick={() => {
+              addCartItem(food.id);
+              nevigate("/cart")
+            }}
+            className="px-4 py-2  bg-slate-200 hover:bg-slate-300 rounded-xl"
           >
             Add to Cart
           </button>
+          <button
+            onClick={() => {
+              addCartItem(food.id);
+              // nevigate("/cart")
+            }}
+            className="px-4 py-2  bg-[#E9AB54] hover:bg-[#d1943f]  text-white border rounded-xl"
+          >
+            Buy Now
+          </button>
+</div>
+       
         </div>
       </div>
 
@@ -77,7 +91,7 @@ const FoodDetails = () => {
           <h3 className="text-2xl font-semibold mb-4">Related Items</h3>
           <div className="grid grid-cols-2  md:grid-cols-3 gap-6">
             {relatedProducts.map((item) => (
-             <FoodCard key={item.id} product={item}/>
+              <FoodCard key={item.id} product={item} />
             ))}
           </div>
         </div>
