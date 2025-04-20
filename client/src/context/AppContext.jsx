@@ -56,6 +56,13 @@ export const AppContextProvider = ({children})=>{
 
 
     }
+    const getCartItems = ()=>{
+      let TotalCount = 0;
+      for(const item in CardItems ){
+        TotalCount += CardItems[item]
+      }
+      return TotalCount
+    }
     
   const categories= [
    
@@ -67,7 +74,7 @@ export const AppContextProvider = ({children})=>{
   { name: "Diet Food", image: "/dietfood.webp", path: "diet food" },
 ];
 
-    const value = {nevigate,User,setUser,isSeller,setisSeller,setshowUserLogin,showuserLogin,categories,product,currency,addCartItem,updateCartItem,removeformCart,CardItems,WhyWeBestData,SearchQuerry,setSearchQuerry}
+    const value = {nevigate,User,setUser,isSeller,setisSeller,setshowUserLogin,showuserLogin,categories,product,currency,addCartItem,updateCartItem,removeformCart,CardItems,WhyWeBestData,SearchQuerry,setSearchQuerry,getCartItems}
           return <AppContext.Provider value={value}>
             {children}
           </AppContext.Provider>

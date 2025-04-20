@@ -13,6 +13,7 @@ const NavBar = () => {
     setshowUserLogin,
     SearchQuerry,
     setSearchQuerry,
+    getCartItems
   } = useAppContext();
   let prod = useLocation().pathname.includes("product");
 
@@ -100,7 +101,7 @@ const NavBar = () => {
             />
           </svg>
           <button className="absolute -top-2 -right-3 text-xs text-black bg-[#E9AB54] w-[18px] h-[18px] rounded-full">
-            3
+            {getCartItems()}
           </button>
         </div>
 
@@ -160,7 +161,7 @@ const NavBar = () => {
             />
           </svg>
           <button className="absolute -top-2 -right-3 text-xs text-black bg-[#E9AB54] w-[18px] h-[18px] rounded-full">
-            3
+            {getCartItems()}
           </button>
         </div>
 
@@ -205,20 +206,7 @@ const NavBar = () => {
     }
   `}
       >
-        <div
-          onClick={() => {
-            setOpen(false);
-            nevigate("/cart");
-          }}
-          className="flex items-center gap-2 mt-3 cursor-pointer"
-        >
-          <span className="relative">
-            <span className="text-black text-sm">Cart</span>
-            <span className="absolute -top-2 -right-3 text-xs text-black bg-[#E9AB54] w-[18px] h-[18px] rounded-full flex items-center justify-center">
-              3
-            </span>
-          </span>
-        </div>
+        
 
         <NavLink to={"/"} onClick={() => setOpen(false)}>
           Home
