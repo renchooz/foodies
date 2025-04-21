@@ -63,6 +63,16 @@ export const AppContextProvider = ({children})=>{
       }
       return TotalCount
     }
+    const CalculateAmount = () =>{
+      let totalAmount = 0;
+      for(const item in CardItems){
+        let itemInfo = product.find((product)=>product.id === item)
+        if(CardItems[item]>0){
+          totalAmount += itemInfo.offerPrice * CardItems[item]
+        }
+      }
+      return Math.floor(totalAmount * 100)/100;
+    }
     
   const categories= [
    
@@ -74,7 +84,7 @@ export const AppContextProvider = ({children})=>{
   { name: "Diet Food", image: "/dietfood.webp", path: "diet food" },
 ];
 
-    const value = {nevigate,User,setUser,isSeller,setisSeller,setshowUserLogin,showuserLogin,categories,product,currency,addCartItem,updateCartItem,removeformCart,CardItems,WhyWeBestData,SearchQuerry,setSearchQuerry,getCartItems}
+    const value = {nevigate,User,setUser,isSeller,setisSeller,setshowUserLogin,showuserLogin,categories,product,currency,addCartItem,updateCartItem,removeformCart,CardItems,WhyWeBestData,SearchQuerry,setSearchQuerry,getCartItems,CalculateAmount }
           return <AppContext.Provider value={value}>
             {children}
           </AppContext.Provider>

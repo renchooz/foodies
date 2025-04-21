@@ -11,6 +11,7 @@ import Login from './components/Login'
 import AllProducts from './pages/AllProducts'
 import ProductCateogory from './pages/ProductCateogory'
 import FoodDetails from './pages/FoodDetails'
+import Cart from './pages/Cart'
 
 
 
@@ -30,6 +31,8 @@ const App = () => {
           <Route path='/product' element={<AllProducts/>}/>
           <Route path='/category/:cateogory' element={<ProductCateogory/>}/>
           <Route path='/category/:cateogory/:id' element={<FoodDetails/>}/>
+          <Route path='/cart' element={<Cart/>}/>
+
 
 
 

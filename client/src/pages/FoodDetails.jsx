@@ -66,7 +66,7 @@ const FoodDetails = () => {
 <button
             onClick={() => {
               addCartItem(food.id);
-              nevigate("/cart")
+             
             }}
             className="px-4 py-2  bg-slate-200 hover:bg-slate-300 rounded-xl"
           >
@@ -75,7 +75,7 @@ const FoodDetails = () => {
           <button
             onClick={() => {
               addCartItem(food.id);
-              // nevigate("/cart")
+              nevigate("/cart")
             }}
             className="px-4 py-2  bg-[#E9AB54] hover:bg-[#d1943f]  text-white border rounded-xl"
           >

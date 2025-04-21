@@ -181,3 +181,51 @@ export const foodItems = [
     description: "We’ve built lasting relationships with clients through reliability, transparency, and great results."
   }
 ];
+export const dummyAddresses = [
+  {
+    name: "Raj Sharma",
+    phone: "9876543210",
+    street: "123 Main Street",
+    city: "Delhi",
+    state: "Delhi",
+    country: "India",
+    pinCode: "110001"
+  },
+  {
+    name: "Aarav Mehta",
+    phone: "9876543211",
+    street: "456 Linking Road",
+    city: "Mumbai",
+    state: "Maharashtra",
+    country: "India",
+    pinCode: "400050"
+  },
+  {
+    name: "Priya Singh",
+    phone: "9876543212",
+    street: "789 MG Road",
+    city: "Bengaluru",
+    state: "Karnataka",
+    country: "India",
+    pinCode: "560001"
+  },
+  {
+    name: "Ravi Kumar",
+    phone: "9876543213",
+    street: "321 Banjara Hills",
+    city: "Hyderabad",
+    state: "Telangana",
+    country: "India",
+    pinCode: "500034"
+  },
+  {
+    name: "Simran Kaur",
+    phone: "9876543214",
+    street: "12 Sector 17",
+    city: "Chandigarh",
+    state: "Chandigarh",
+    country: "India",
+    pinCode: "160017"
+  }
+];
+
