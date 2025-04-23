@@ -15,6 +15,7 @@ export const AppContextProvider = ({children})=>{
     const [product, setproduct] = useState([])
     const [CardItems, setCardItems] = useState({})
     const [SearchQuerry, setSearchQuerry] = useState({})
+    
 
     const WhyWeBestData = whyWeAreBest
      

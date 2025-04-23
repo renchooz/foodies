@@ -4,6 +4,8 @@ import { useAppContext } from "../context/AppContext";
 import { FaPlus } from "react-icons/fa";
 import { dummyAddresses } from "../products";
 import { Navigate } from "react-router-dom";
+import AddAddress from "./AddAddress";
+
 
 const Cart = () => {
   const {
@@ -21,7 +23,7 @@ const Cart = () => {
   const [showAddress, setShowAddress] = useState(false);
   const [selectedAdress, setselectedAdress] = useState(dummyAddresses[0]);
   const [paymentOption, setpaymentOption] = useState("COD");
-
+const [addAddress, setaddAddress] = useState(false)
   const getCart = () => {
     let Temparr = [];
     for (const key in CardItems) {
@@ -42,7 +44,7 @@ const Cart = () => {
   console.log(CardItems);
   return product.length > 0 && CardItems ? (
     <div className="flex  flex-col md:flex-row mt-5  w-full ">
-      <div className="flex-1 max-w-4xl">
+      {!addAddress ? (<div className="flex-1 max-w-4xl">
         <h1 className="text-3xl font-medium mb-10">
           Shopping Cart{" "}
           <span className="text-sm text-[#E9AB54]">{getCartItems()}</span>
@@ -125,7 +127,7 @@ const Cart = () => {
          
           Continue Shopping
         </button>
-      </div>
+      </div>):(<AddAddress adress={setaddAddress}/>)}
 
       <div className="max-w-[360px] w-full bg-gray-100/40 p-5 max-md:mt-16 border border-gray-300/70">
         <h2 className="text-xl md:text-xl font-medium">Order Summary</h2>
@@ -163,7 +165,8 @@ const Cart = () => {
                 <p
                   onClick={() => {
                     setShowAddress(false);
-                    nevigate("add-address")
+                    setaddAddress(true)
+                    scrollTo(0,0)
                   }}
                   className="text-[#E9AB54] text-center cursor-pointer p-2 hover:hover:bg-[#8d6834] transition hover:text-white"
                 >
