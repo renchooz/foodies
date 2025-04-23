@@ -66,7 +66,7 @@ export const AppContextProvider = ({children})=>{
     const CalculateAmount = () =>{
       let totalAmount = 0;
       for(const item in CardItems){
-        let itemInfo = product.find((product)=>product.id === item)
+        let itemInfo = product.find((product) => product.id === Number(item));
         if(CardItems[item]>0){
           totalAmount += itemInfo.offerPrice * CardItems[item]
         }

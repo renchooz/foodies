@@ -3,6 +3,7 @@ import React from "react";
 import { useAppContext } from "../context/AppContext";
 import { FaPlus } from "react-icons/fa";
 import { dummyAddresses } from "../products";
+import { Navigate } from "react-router-dom";
 
 const Cart = () => {
   const {
@@ -30,6 +31,9 @@ const Cart = () => {
     }
     setcartArray(Temparr);
   };
+  let PlaceOrder = ()=>{
+
+  }
   useEffect(() => {
     if (product.length > 0 && CardItems) {
       getCart();
@@ -37,11 +41,11 @@ const Cart = () => {
   }, [product, CardItems]);
   console.log(CardItems);
   return product.length > 0 && CardItems ? (
-    <div className="flex flex-col md:flex-row mt-5 max-w-6xl w-full px-6 mx-auto">
+    <div className="flex  flex-col md:flex-row mt-5  w-full ">
       <div className="flex-1 max-w-4xl">
         <h1 className="text-3xl font-medium mb-10">
           Shopping Cart{" "}
-          <span className="text-sm text-indigo-500">{getCartItems()}</span>
+          <span className="text-sm text-[#E9AB54]">{getCartItems()}</span>
         </h1>
 
         <div className="grid grid-cols-[2fr_1fr_1fr] text-gray-500 text-base font-medium pb-3">
@@ -75,8 +79,8 @@ const Cart = () => {
                   <p>
                     Size: <span>{product.size || "N/A"}</span>
                   </p>
-                  <div className="flex items-center gap-3">
-                    <p>Quantity {product.quantity}</p>
+                  <div className="flex items-center gap-3  ">
+                    <p>Qty {product.quantity}</p>
                     <p
                       onClick={(e) => {
                         addCartItem(product.id);
@@ -116,22 +120,9 @@ const Cart = () => {
           </div>
         ))}
 
-        <button className="group cursor-pointer flex items-center mt-8 gap-2 text-indigo-500 font-medium">
-          <svg
-            width="15"
-            height="11"
-            viewBox="0 0 15 11"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M14.09 5.5H1M6.143 10 1 5.5 6.143 1"
-              stroke="#615fff"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+        <button onClick={()=>nevigate("/product")} className="group cursor-pointer flex items-center mt-8 gap-2 text-[#E9AB54]
+        font-medium">
+         
           Continue Shopping
         </button>
       </div>
@@ -150,24 +141,31 @@ const Cart = () => {
             </p>
             <button
               onClick={() => setShowAddress(!showAddress)}
-              className="text-indigo-500 hover:underline cursor-pointer"
+              className="text-[#E9AB54] hover:underline cursor-pointer"
             >
               Change
             </button>
             {showAddress && (
               <div className="absolute top-12 py-1 bg-white border border-gray-300 text-sm w-full">
-                {Address.map((adress, id) => (
-                  <p key={id}
-                    onClick={() => {setselectedAdress(adress), setShowAddress(false)}}
-                    className="text-gray-500 p-2 hover:bg-gray-100"
+                {Address.slice(0, 3).map((adress, id) => (
+                  <p
+                    key={id}
+                    onClick={() => {
+                      setselectedAdress(adress), setShowAddress(false);
+                    }}
+                    className="text-gray-500 p-2 hover:bg-gray-100 cursor-pointer"
                   >
-                    {adress.street} {adress.city} ,{adress.country} {adress.pinCode}
+                    {adress.street} {adress.city} ,{adress.country}{" "}
+                    {adress.pinCode}
                   </p>
                 ))}
 
                 <p
-                  onClick={() => setShowAddress(false)}
-                  className="text-indigo-500 text-center cursor-pointer p-2 hover:bg-indigo-500/10"
+                  onClick={() => {
+                    setShowAddress(false);
+                    nevigate("add-address")
+                  }}
+                  className="text-[#E9AB54] text-center cursor-pointer p-2 hover:hover:bg-[#8d6834] transition hover:text-white"
                 >
                   Add address
                 </p>
@@ -177,7 +175,7 @@ const Cart = () => {
 
           <p className="text-sm font-medium uppercase mt-6">Payment Method</p>
 
-          <select className="w-full border border-gray-300 bg-white px-3 py-2 mt-2 outline-none">
+          <select onChange={(e)=>setpaymentOption(e.target.value)} className="w-full border border-gray-300 bg-white px-3 py-2 mt-2 outline-none">
             <option value="COD">Cash On Delivery</option>
             <option value="Online">Online Payment</option>
           </select>
@@ -188,24 +186,24 @@ const Cart = () => {
         <div className="text-gray-500 mt-4 space-y-2">
           <p className="flex justify-between">
             <span>Price</span>
-            <span>$20</span>
+            <span>₹{CalculateAmount()}</span>
           </p>
           <p className="flex justify-between">
             <span>Shipping Fee</span>
-            <span className="text-green-600">Free</span>
+            <span className="text-[#E9AB54]">Free</span>
           </p>
           <p className="flex justify-between">
             <span>Tax (2%)</span>
-            <span>$20</span>
+            <span>₹{CalculateAmount()*2/100}</span>
           </p>
           <p className="flex justify-between text-lg font-medium mt-3">
             <span>Total Amount:</span>
-            <span>$20</span>
+            <span>₹{CalculateAmount() + CalculateAmount()*2/100}</span>
           </p>
         </div>
 
-        <button className="w-full py-3 mt-6 cursor-pointer bg-indigo-500 text-white font-medium hover:bg-indigo-600 transition">
-          Place Order
+        <button onClick={PlaceOrder()} className="w-full py-3 mt-6 cursor-pointer bg-[#E9AB54] text-white font-medium hover:bg-[#8d6834] transition">
+          {paymentOption === "COD"?"Place Order":"Proceed To Pay"}
         </button>
       </div>
     </div>
