@@ -13,17 +13,18 @@ import ProductCateogory from './pages/ProductCateogory'
 import FoodDetails from './pages/FoodDetails'
 import Cart from './pages/Cart'
 import MyOrders from './pages/MyOrders'
+import SellerLogin from './components/seller/SellerLogin'
 
 
 
 
 const App = () => {
-  let isSeller = useLocation().pathname.includes("seller")
+  let seller = useLocation().pathname.includes("seller")
  
-  let {showuserLogin} = useAppContext()
+  let {showuserLogin,isSeller} = useAppContext()
   return (
     <div>
-      {isSeller ? null : <NavBar/>}
+      {seller ? null : <NavBar/>}
       {showuserLogin ?<Login/>:null}
       <Toaster/>
       
@@ -35,6 +36,9 @@ const App = () => {
           <Route path='/category/:cateogory/:id' element={<FoodDetails/>}/>
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/orders' element={<MyOrders/>}/>
+          <Route path='/seller' element={isSeller ? null :<SellerLogin/>}>
+
+          </Route>
 
    
 
@@ -46,7 +50,7 @@ const App = () => {
        
       </div>
      
-     {!isSeller ?<Footer/> : null}
+     {!seller ?<Footer/> : null}
     </div>
   )
 }

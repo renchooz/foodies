@@ -4,7 +4,7 @@ import Categories from '../components/Categories'
 import BestSeller from '../components/BestSeller'
 import WhyWeAreBest from '../components/WhyWeAreBest'
 import FixedBtm from '../components/FixedBtm'
-import Footer from '../components/Footer'
+
 
 import { useAppContext } from '../context/AppContext'
 
