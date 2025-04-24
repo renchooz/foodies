@@ -229,3 +229,64 @@ export const dummyAddresses = [
   }
 ];
 
+export const myOrders = [
+  {
+    _id: 'order001',
+    orderDate: '2025-04-20',
+    status: 'Delivered',
+    paymentMethod: 'Online',
+    products: [
+      {
+        id: 1,
+        name: "Chicken Biryani",
+        quantity: 1,
+        price: 280,
+        restaurant: "Biryani House"
+      },
+      {
+        id: 10,
+        name: "Cheeseburger",
+        quantity: 2,
+        price: 200,
+        restaurant: "Burger Den"
+      }
+    ]
+  },
+  {
+    _id: 'order002',
+    orderDate: '2025-04-22',
+    status: 'Pending',
+    paymentMethod: 'COD',
+    products: [
+      {
+        id: 6,
+        name: "Schezwan Noodles",
+        quantity: 1,
+        price: 180,
+        restaurant: "Red Bowl"
+      }
+    ]
+  },
+  {
+    _id: 'order003',
+    orderDate: '2025-04-23',
+    status: 'Out for Delivery',
+    paymentMethod: 'UPI',
+    products: [
+      {
+        id: 12,
+        name: "Oats Bowl",
+        quantity: 1,
+        price: 160,
+        restaurant: "Healthy Habits"
+      },
+      {
+        id: 11,
+        name: "Quinoa Salad",
+        quantity: 1,
+        price: 240,
+        restaurant: "FitBites"
+      }
+    ]
+  }
+];
