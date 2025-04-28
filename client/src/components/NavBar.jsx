@@ -43,7 +43,7 @@ const NavBar = () => {
         <NavLink to={"/"} className="hover:text-[#E9AB54]">
           Home
         </NavLink>
-        <NavLink to={"/about"} className="hover:text-[#E9AB54]">
+        <NavLink to={"/seller"} className="hover:text-[#E9AB54]">
           About
         </NavLink>
         <NavLink to={"/product"} className="hover:text-[#E9AB54]">
@@ -214,7 +214,7 @@ const NavBar = () => {
         <NavLink to={"/product"} onClick={() => setOpen(false)}>
           Special Offers
         </NavLink>
-        <NavLink to={"/about"} onClick={() => setOpen(false)}>
+        <NavLink to={"/seller"} onClick={() => setOpen(false)}>
           About
         </NavLink>
         {User && (
