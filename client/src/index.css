@@ -10,3 +10,7 @@
   --color-primary: "#3AAFA9";
   --color-secondary :"#E9AB54";
 }
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}

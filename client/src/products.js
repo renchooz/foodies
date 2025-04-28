@@ -240,6 +240,7 @@ export const myOrders = [
         id: 1,
         name: "Chicken Biryani",
         quantity: 1,
+
         price: 280,
         restaurant: "Biryani House"
       },
@@ -272,6 +273,94 @@ export const myOrders = [
     orderDate: '2025-04-23',
     status: 'Out for Delivery',
     paymentMethod: 'UPI',
+    products: [
+      {
+        id: 12,
+        name: "Oats Bowl",
+        quantity: 1,
+        price: 160,
+        restaurant: "Healthy Habits"
+      },
+      {
+        id: 11,
+        name: "Quinoa Salad",
+        quantity: 1,
+        price: 240,
+        restaurant: "FitBites"
+      }
+    ]
+  }
+];
+export const dummyOrders = [
+  {
+    _id: 'order001',
+    orderDate: '2025-04-20',
+    status: 'Delivered',
+    paymentMethod: 'Online',
+    address: {
+      name: "Raj Sharma",
+      phone: "9876543210",
+      street: "123 Main Street",
+      city: "Delhi",
+      state: "Delhi",
+      country: "India",
+      pinCode: "110001"
+    },
+    products: [
+      {
+        id: 1,
+        name: "Chicken Biryani",
+        quantity: 1,
+        price: 280,
+        restaurant: "Biryani House"
+      },
+      {
+        id: 10,
+        name: "Cheeseburger",
+        quantity: 2,
+        price: 200,
+        restaurant: "Burger Den"
+      }
+    ]
+  },
+  {
+    _id: 'order002',
+    orderDate: '2025-04-22',
+    status: 'Pending',
+    paymentMethod: 'COD',
+    address: {
+      name: "Aarav Mehta",
+      phone: "9876543211",
+      street: "456 Linking Road",
+      city: "Mumbai",
+      state: "Maharashtra",
+      country: "India",
+      pinCode: "400050"
+    },
+    products: [
+      {
+        id: 6,
+        name: "Schezwan Noodles",
+        quantity: 1,
+        price: 180,
+        restaurant: "Red Bowl"
+      }
+    ]
+  },
+  {
+    _id: 'order003',
+    orderDate: '2025-04-23',
+    status: 'Out for Delivery',
+    paymentMethod: 'UPI',
+    address: {
+      name: "Priya Singh",
+      phone: "9876543212",
+      street: "789 MG Road",
+      city: "Bengaluru",
+      state: "Karnataka",
+      country: "India",
+      pinCode: "560001"
+    },
     products: [
       {
         id: 12,
