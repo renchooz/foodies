@@ -5,7 +5,7 @@ import connectDb from "./config/db.js"
 import "dotenv/config"
 let app = express()
 let port = process.env.PORT || 4000
-// await connectDb()
+await connectDb()
 //middleware
 app.use(express.json())
 app.use(cors())
