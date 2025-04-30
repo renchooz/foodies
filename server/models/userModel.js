@@ -13,9 +13,13 @@ let userModel = new mongoose.Schema({
     password:{
         type:String,
         required: true
+    },
+    cartItems:{
+        type: Object,
+        default:{}
     }
-})
+},{minimize:false})
 
 let 
-User = mongoose.model("User",userModel)
+User = mongoose.models.user || mongoose.model("user",userModel)
 export default User
