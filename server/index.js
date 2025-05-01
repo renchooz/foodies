@@ -3,6 +3,7 @@ import cors from 'cors'
 import cookieParser from "cookie-parser"
 import connectDb from "./config/db.js"
 import "dotenv/config"
+import UserRouter from "./routes/userRouute.js"
 let app = express()
 let port = process.env.PORT || 4000
 await connectDb()
@@ -15,6 +16,7 @@ app.use(cookieParser())
 app.get("/",(req,res)=>{
     res.send("Api Working")
 })
+app.use("/api/user",UserRouter)
 
 app.listen(port,()=>{
     console.log(`api is running on ${port}`)

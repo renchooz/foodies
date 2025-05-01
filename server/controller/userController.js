@@ -1,13 +1,14 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken"
+import "dotenv/config"
 
- export const userController = async(req,res)=>{
+ export const userData = async(req,res)=>{
 const {name, email,password} = req.body
 try {
     let existingUser = await User.findOne({email})
     if(existingUser){
-        return res.json({message:"User alredy exists"})
+        return res.json({message:"User already exists"})
     }
     let hashedPassword = await bcrypt.hash(password,10)
     const newUser = await User.create({

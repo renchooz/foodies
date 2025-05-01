@@ -1,25 +1,30 @@
 import mongoose from "mongoose";
 
-let userModel = new mongoose.Schema({
-    name:{
-        type: String,
-        required: true,
-    },
-    email:{
-        type:String,
-        required: true,
-        unique:true
-    },
-    password:{
-        type:String,
-        required: true
-    },
-    cartItems:{
-        type: Object,
-        default:{}
-    }
-},{minimize:false})
 
-let 
-User = mongoose.models.user || mongoose.model("user",userModel)
-export default User
+// Define the schema
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, "Name is required"],
+  },
+  email: {
+    type: String,
+    required: [true, "Email is required"],
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: [true, "Password is required"],
+  },
+  cartItems: {
+    type: Object,
+    default: {},
+  },
+}, {
+  minimize: false, // Keeps empty objects in DB
+  timestamps: true, // Automatically adds createdAt and updatedAt
+});
+
+// Export the model safely (for serverless or hot-reloading environments)
+const User = mongoose.models.User || mongoose.model("User", userSchema);
+export default User;
