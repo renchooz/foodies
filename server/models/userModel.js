@@ -25,6 +25,6 @@ const userSchema = new mongoose.Schema({
   timestamps: true, // Automatically adds createdAt and updatedAt
 });
 
-// Export the model safely (for serverless or hot-reloading environments)
+
 const User = mongoose.models.User || mongoose.model("User", userSchema);
 export default User;
