@@ -39,10 +39,11 @@ export const login = async (req, res) => {
   let { email, password } = req.body;
   try {
     let user = await User.findOne({ email });
-    if (!user) res.json({ status: false, message: "invalid crediantials" });
+    if (!user)
+      return res.json({ status: false, message: "invalid crediantials" });
     let checkpass = await bcrypt.compare(password, user.password);
     if (!checkpass)
-      res.json({ status: false, message: "invalid crediantials" });
+      return res.json({ status: false, message: "invalid crediantials" });
 
     let token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
@@ -58,37 +59,34 @@ export const login = async (req, res) => {
     });
   } catch (error) {
     console.log(error.message);
+   return res.json({ message: error.message });
+  }
+};
+
+export const isAuth = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const user = await User.findById(userId).select("-password");
+    return res.json({
+      status: true,
+      user,
+    });
+  } catch (error) {
+    console.log(error.message);
     res.json({ message: error.message });
   }
 };
 
-export const isAuth = async (req,res)=>{
+export const logout = async (req, res) => {
   try {
-    const userId = req.userId
-    const user = await User.findById(userId).select("-password")
-    return res.json({
-      status:true,
-      user
-    })
-  } catch (error) {
-    console.log(error.message);
-    res.json({ message: error.message });
-    
-  }
-
-}
-
-export const logout = async (req,res)=>{
-  try {
-    res.clearCookie("token",{
+    res.clearCookie("token", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
-  })
-    res.json({status:true,message:'Cookie cleared succesfully'})
+    });
+    res.json({ status: true, message: "Cookie cleared succesfully" });
   } catch (error) {
     console.log(error.message);
     res.json({ message: error.message });
   }
-
-}
+};
