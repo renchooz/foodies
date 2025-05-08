@@ -9,4 +9,4 @@ productRoute.get("/list",productList)
 productRoute.get("/:id",productById)
 productRoute.post("stock",authSeller,changeStock)
 
-export default productRoute
+export default productRoute 

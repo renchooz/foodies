@@ -7,6 +7,7 @@ import UserRouter from "./routes/userRouute.js"
 import sellerRoute from "./routes/sellerRouter.js"
 import connectCloudinary from "./config/cloudinary.js"
 import productRoute from "./routes/productRoute.js"
+import cartRoute from "./routes/cartRoute.js"
 let app = express()
 let port = process.env.PORT || 4000
 await connectDb()
@@ -23,6 +24,7 @@ app.get("/",(req,res)=>{
 app.use("/api/user",UserRouter)
 app.use("/api/seller",sellerRoute)
 app.use("/api/product",productRoute)
+app.use("/api/cart",cartRoute)
 
 app.listen(port,()=>{
     console.log(`api is running on ${port}`)
