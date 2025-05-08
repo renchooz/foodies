@@ -5,9 +5,11 @@ import connectDb from "./config/db.js"
 import "dotenv/config"
 import UserRouter from "./routes/userRouute.js"
 import sellerRoute from "./routes/sellerRouter.js"
+import connectCloudinary from "./config/cloudinary.js"
 let app = express()
 let port = process.env.PORT || 4000
 await connectDb()
+await connectCloudinary()
 //middleware
 app.use(express.json())
 app.use(cors())
