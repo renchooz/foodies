@@ -9,6 +9,7 @@ import connectCloudinary from "./config/cloudinary.js"
 import productRoute from "./routes/productRoute.js"
 import cartRoute from "./routes/cartRoute.js"
 import AddressRoute from "./routes/addressRoute.js"
+import orderRoute from "./routes/orders.js"
 let app = express()
 let port = process.env.PORT || 4000
 await connectDb()
@@ -27,6 +28,8 @@ app.use("/api/seller",sellerRoute)
 app.use("/api/product",productRoute)
 app.use("/api/cart",cartRoute)
 app.use("/api/address",AddressRoute)
+app.use("/api/orders",orderRoute)
+
 
 
 app.listen(port,()=>{
