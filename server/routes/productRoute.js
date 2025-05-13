@@ -7,6 +7,6 @@ const productRoute = express.Router()
 productRoute.post("/add",authSeller,upload.single("image"),addProduct)
 productRoute.get("/list",productList)
 productRoute.get("/:id",productById)
-productRoute.post("stock",authSeller,changeStock)
+productRoute.post("/stock",authSeller,changeStock)
 
 export default productRoute 

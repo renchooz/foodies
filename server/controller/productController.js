@@ -31,7 +31,7 @@ export const addProduct = async (req, res) => {
       image: uploadResult.secure_url,
     });
 
-    return res.status(201).json({ status: true, product: newProduct });
+    return res.status(201).json({ status: true, product: newProduct,message:"product added" });
   } catch (error) {
     console.error("Error in addProduct:", error.message);
     return res.status(500).json({ status: false, message: error.message });

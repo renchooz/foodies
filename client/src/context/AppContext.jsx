@@ -35,7 +35,17 @@ export const AppContextProvider = ({children})=>{
     }
      
     let fetchProducts = async ()=>{
-      setproduct(foodItems)
+      try {
+        const {data} = await axios.get("http://localhost:4000/api/product/list")
+        if(data.status){
+          setproduct(data.product)
+        }else{
+          toast.error(data.message)
+        }
+      } catch (error) {
+        toast.error(error.message)
+        
+      }
     }
     useEffect(() => {
     fetchProducts()
@@ -101,7 +111,7 @@ export const AppContextProvider = ({children})=>{
   { name: "Diet Food", image: "/dietfood.webp", path: "diet food" },
 ];
 
-    const value = {nevigate,User,setUser,isSeller,setisSeller,setshowUserLogin,showuserLogin,categories,product,currency,addCartItem,updateCartItem,removeformCart,CardItems,WhyWeBestData,SearchQuerry,setSearchQuerry,getCartItems,CalculateAmount, }
+    const value = {nevigate,User,setUser,isSeller,setisSeller,setshowUserLogin,showuserLogin,categories,product,currency,addCartItem,updateCartItem,removeformCart,CardItems,WhyWeBestData,SearchQuerry,setSearchQuerry,getCartItems,CalculateAmount,fetchProducts }
           return <AppContext.Provider value={value}>
             {children}
           </AppContext.Provider>
