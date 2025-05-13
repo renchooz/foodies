@@ -1,10 +1,12 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const SellerLayout = () => {
 
  
-const {setisSeller} = useAppContext()
+const {setisSeller,nevigate} = useAppContext()
     const sidebarLinks = [
         { name: "Add Product", path: "/seller" },
         { name: "Product List", path: "/seller/product-list" },
@@ -12,7 +14,18 @@ const {setisSeller} = useAppContext()
        
     ];
     const logout = async()=>{
-        setisSeller(false)
+        try {
+          const {data} = await axios.post("http://localhost:4000/api/seller/logout")
+          if(data.status){
+            setisSeller(false)
+            nevigate("/")
+            toast.success(data.message)
+          }else{
+            toast.error(data.message)
+          }
+        } catch (error) {
+         toast.error(error.message)
+        }
     }
 
     return (

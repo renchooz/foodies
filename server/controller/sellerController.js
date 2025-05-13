@@ -51,7 +51,7 @@ export const sellerlogout = async (req, res) => {
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
     });
-    res.json({ status: true, message: "Cookie cleared succesfully" });
+    res.json({ status: true, message: "Loged Out" });
   } catch (error) {
     console.log(error.message);
     res.json({ message: error.message });

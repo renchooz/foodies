@@ -2,7 +2,10 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { foodItems, whyWeAreBest } from "../products";
 import toast from "react-hot-toast";
+import axios from "axios"
 
+
+axios.defaults.withCredentials = true;
 
 export const AppContext = createContext()
 
@@ -15,15 +18,28 @@ export const AppContextProvider = ({children})=>{
     const [product, setproduct] = useState([])
     const [CardItems, setCardItems] = useState({})
     const [SearchQuerry, setSearchQuerry] = useState({})
-    
-
     const WhyWeBestData = whyWeAreBest
+
+    const fetchSeller = async()=>{
+      try {
+        const {data}=  await axios.get("http://localhost:4000/api/seller/is-auth")
+        if(data.status){
+          setisSeller(true)
+        }
+        else{
+          setisSeller(false)
+        }
+      } catch (error) {
+        setisSeller(false)
+      }
+    }
      
     let fetchProducts = async ()=>{
       setproduct(foodItems)
     }
     useEffect(() => {
     fetchProducts()
+    fetchSeller()
     },[])
     //add product to cart
     let addCartItem = (itemId)=>{
@@ -85,7 +101,7 @@ export const AppContextProvider = ({children})=>{
   { name: "Diet Food", image: "/dietfood.webp", path: "diet food" },
 ];
 
-    const value = {nevigate,User,setUser,isSeller,setisSeller,setshowUserLogin,showuserLogin,categories,product,currency,addCartItem,updateCartItem,removeformCart,CardItems,WhyWeBestData,SearchQuerry,setSearchQuerry,getCartItems,CalculateAmount }
+    const value = {nevigate,User,setUser,isSeller,setisSeller,setshowUserLogin,showuserLogin,categories,product,currency,addCartItem,updateCartItem,removeformCart,CardItems,WhyWeBestData,SearchQuerry,setSearchQuerry,getCartItems,CalculateAmount, }
           return <AppContext.Provider value={value}>
             {children}
           </AppContext.Provider>

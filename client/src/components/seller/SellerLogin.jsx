@@ -1,23 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 
 import { useAppContext } from "../../context/AppContext";
+import toast from "react-hot-toast";
+import axios from "axios";
+
 
 const SellerLogin = () => {
-  const { nevigate, isSeller, setisSeller } = useAppContext();
-  const [email, setemail] = useState([]);
-  const [password, setpassword] = useState([]);
-  useEffect(() => {
+  const { nevigate, isSeller, setisSeller, } = useAppContext();
+  const [email, setemail] = useState('');
+  const [password, setpassword] = useState('');  
+  
+  const submitHandler = async (e) => {
+  e.preventDefault();
+  try {
+    const { data } = await axios.post("http://localhost:4000/api/seller/login", { email, password });
+
+    if (data.status) {
+      setisSeller(true);
+      console.log(isSeller)
+      nevigate("/seller");
+      toast.success("Login Success");
+    } else {
+      toast.error(data.message || "Login failed");
+    }
+  } catch (error) {
+    toast.error(error.response?.data?.message || error.message || "Something went wrong");
+  }
+};
+
+
+   useEffect(() => {
     if (isSeller) {
       nevigate("/seller");
     }
   }, [isSeller]);
-  const submitHandler  =async (e) => {
-    e.preventDefault();
-    setemail("");
-    setpassword("");
-  setisSeller(true)
-  };
-  return !isSeller && (
+  if (isSeller) return null;
+  return (
     <form
     onSubmit={submitHandler}
     className="w-full h-[100vh] flex justify-center items-center bg-gray-100"
