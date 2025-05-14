@@ -26,6 +26,7 @@ export const userData = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     return res.json({
+      status:true,
       message: "User regestered succesfully",
       user: { email: newUser.email, name: newUser.name },
     });
@@ -54,6 +55,7 @@ export const login = async (req, res) => {
       sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
     });
     return res.json({
+      status:true,
       message: "User logged in",
       user: { email: user.email, name: user.name },
     });
@@ -84,7 +86,7 @@ export const logout = async (req, res) => {
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
     });
-    res.json({ status: true, message: "Cookie cleared succesfully" });
+    res.json({ status: true, message: "Loged Out succesfully" });
   } catch (error) {
     console.log(error.message);
     res.json({ message: error.message });

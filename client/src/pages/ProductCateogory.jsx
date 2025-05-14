@@ -21,7 +21,7 @@ const ProductCateogory = () => {
         {filteredItems.length > 0 ?(
           <div className='flex  md:justify-start justify-center mt-10 gap-6'>
             {filteredItems.map((product)=>(
-              <FoodCard key={product.id} product={product}/>
+              <FoodCard key={product._id} product={product}/>
 
             ))}
           </div>

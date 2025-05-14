@@ -66,11 +66,11 @@ const FoodCard = ({ product, currency }) => {
             }}
             className="text-[#E9AB54]"
           >
-            {!CardItems[product.id] ? (
+            {!CardItems[product._id] ? (
               <button
                 className="flex items-center justify-center gap-1 bg-[#E9AB54] border border-indigo-300 md:w-[80px] w-[64px] h-[34px] rounded text-white font-medium"
                 onClick={(e) => {
-                  addCartItem(product.id);
+                  addCartItem(product._id);
                   e.stopPropagation()
 
                 }}
@@ -81,17 +81,17 @@ const FoodCard = ({ product, currency }) => {
               <div className="flex items-center justify-center gap-2 md:w-20 w-16 h-[34px] bg-[#fff2d8] rounded select-none">
                 <button
                   onClick={(e) => {
-                    removeformCart(product.id);
+                    removeformCart(product._id);
                     e.stopPropagation()
                   }}
                   className="cursor-pointer text-md px-2 h-full"
                 >
                   -
                 </button>
-                <span className="w-5 text-center">{CardItems[product.id]}</span>
+                <span className="w-5 text-center">{CardItems[product._id]}</span>
                 <button
                   onClick={(e) => {
-                    addCartItem(product.id);
+                    addCartItem(product._id);
                     e.stopPropagation()
                   }}
                   className="cursor-pointer text-md px-2 h-full"

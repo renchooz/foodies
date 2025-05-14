@@ -33,6 +33,21 @@ export const AppContextProvider = ({children})=>{
         setisSeller(false)
       }
     }
+
+    const fetchUser = async()=>{
+      try {
+        const {data} = await axios.get("http://localhost:4000/api/user/is-auth")
+        if(data.status){
+          setUser(data.user)
+          setCardItems(data.user.cartItems)
+        }else{
+          toast.error(data.message)
+        }
+      } catch (error) {
+          setUser(null)
+         toast.error(error.message)
+      }
+    }
      
     let fetchProducts = async ()=>{
       try {
@@ -50,6 +65,7 @@ export const AppContextProvider = ({children})=>{
     useEffect(() => {
     fetchProducts()
     fetchSeller()
+    fetchUser()
     },[])
     //add product to cart
     let addCartItem = (itemId)=>{

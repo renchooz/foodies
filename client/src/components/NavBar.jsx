@@ -3,6 +3,8 @@ import { NavLink, useLocation } from "react-router-dom";
 import logo from "/logo.png";
 import profile from "/logo.png";
 import { useAppContext } from "../context/AppContext";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const NavBar = () => {
   const [open, setOpen] = React.useState(false);
@@ -18,8 +20,19 @@ const NavBar = () => {
   let prod = useLocation().pathname.includes("product");
 
   let logout = async () => {
-    setUser(null);
-    nevigate("/");
+    try {
+      const {data} = await axios.post("http://localhost:4000/api/user/logout")
+      if(data.status){
+        setUser(null)
+        toast.success(data.message)
+        nevigate("/")
+      }
+      else{
+         toast.error(data.message)
+      }
+    } catch (error) {
+        toast.error(error.message)
+    }
   };
   useEffect(() => {
     if (SearchQuerry.length > 0) {
