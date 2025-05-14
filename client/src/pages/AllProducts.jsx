@@ -27,8 +27,8 @@ const AllProducts = () => {
         <div className="w-12 h-[1px] bg-black/50"></div>
     </div>
     <div className="flex flex-wrap gap-5 mt-5  justify-center">
-        {FilterProducts.filter((product)=> product.available).map((product)=>(
-            <FoodCard key={product.id} product={product}/>
+        {FilterProducts.filter((product)=> product.inStock).map((product)=>(
+            <FoodCard key={product._id} product={product}/>
         ))}
     </div>
   </div>;

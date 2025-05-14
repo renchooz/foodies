@@ -48,6 +48,8 @@ export const AppContextProvider = ({children})=>{
          toast.error(error.message)
       }
     }
+   
+
      
     let fetchProducts = async ()=>{
       try {
@@ -62,6 +64,30 @@ export const AppContextProvider = ({children})=>{
         
       }
     }
+   useEffect(() => {
+  const CartUpdate = async () => {
+    try {
+      const { data } = await axios.post("http://localhost:4000/api/cart/update", {
+        userId: User._id, 
+        cartItems: CardItems,
+      });
+      if (!data.status) {
+        toast.error(data.message);
+
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  if (User) {
+    CartUpdate();
+  }
+  
+}, [CardItems,User]);
+
+
+
     useEffect(() => {
     fetchProducts()
     fetchSeller()
@@ -106,16 +132,20 @@ export const AppContextProvider = ({children})=>{
       }
       return TotalCount
     }
-    const CalculateAmount = () =>{
-      let totalAmount = 0;
-      for(const item in CardItems){
-        let itemInfo = product.find((product) => product.id === Number(item));
-        if(CardItems[item]>0){
-          totalAmount += itemInfo.offerPrice * CardItems[item]
-        }
+    const CalculateAmount = (CardItems,products) => {
+  let totalAmount = 0;
+  for (const itemId in CardItems) {
+    const quantity = CardItems[itemId];
+    if (quantity > 0) {
+      const itemInfo = products.find((product) => product._id === itemId);
+      if (itemInfo) {
+        totalAmount += itemInfo.offerPrice * quantity;
       }
-      return Math.floor(totalAmount * 100)/100;
     }
+  }
+  return Math.floor(totalAmount * 100) / 100;
+};
+
     
   const categories= [
    
@@ -127,7 +157,7 @@ export const AppContextProvider = ({children})=>{
   { name: "Diet Food", image: "/dietfood.webp", path: "diet food" },
 ];
 
-    const value = {nevigate,User,setUser,isSeller,setisSeller,setshowUserLogin,showuserLogin,categories,product,currency,addCartItem,updateCartItem,removeformCart,CardItems,WhyWeBestData,SearchQuerry,setSearchQuerry,getCartItems,CalculateAmount,fetchProducts }
+    const value = {nevigate,User,setUser,isSeller,setisSeller,setshowUserLogin,showuserLogin,categories,product,currency,addCartItem,updateCartItem,removeformCart,CardItems,WhyWeBestData,SearchQuerry,setSearchQuerry,getCartItems,CalculateAmount,fetchProducts,setCardItems, }
           return <AppContext.Provider value={value}>
             {children}
           </AppContext.Provider>

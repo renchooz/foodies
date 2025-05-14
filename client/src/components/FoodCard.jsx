@@ -9,7 +9,7 @@ const FoodCard = ({ product, currency }) => {
   return (
     <div
       onClick={() => {
-        nevigate(`/category/${product.category}/${product.id}`);
+        nevigate(`/category/${product.category}/${product._id}`);
         window.scrollTo(0, 0);
       }}
       className="border  border-gray-500/20 rounded-md md:px-4  py-2 bg-[#F7F7F7] min-w-40 max-w-40 md:min-w-60 md:max-w-60 w-full"

@@ -3,7 +3,7 @@ import React from "react";
 import { useAppContext } from "../context/AppContext";
 import { FaPlus } from "react-icons/fa";
 import { dummyAddresses } from "../products";
-import { Navigate } from "react-router-dom";
+
 import AddAddress from "./AddAddress";
 
 
@@ -24,15 +24,18 @@ const Cart = () => {
   const [selectedAdress, setselectedAdress] = useState(dummyAddresses[0]);
   const [paymentOption, setpaymentOption] = useState("COD");
 const [addAddress, setaddAddress] = useState(false)
-  const getCart = () => {
-    let Temparr = [];
-    for (const key in CardItems) {
-      let productItem = product.find((item) => item.id == key);
+ const getCart = () => {
+  let Temparr = [];
+  for (const key in CardItems) {
+    let productItem = product.find((item) => item._id == key);
+    if (productItem) {
       productItem.quantity = CardItems[key];
       Temparr.push(productItem);
     }
-    setcartArray(Temparr);
-  };
+  }
+  setcartArray(Temparr);
+};
+
   let PlaceOrder = ()=>{
 
   }
@@ -63,7 +66,7 @@ const [addAddress, setaddAddress] = useState(false)
           >
             <div
               onClick={() => {
-                nevigate(`/category/${product.category}/${product.id}`);
+                nevigate(`/category/${product.category}/${product._id}`);
                 scrollTo(0, 0);
               }}
               className="flex items-center md:gap-6 gap-3"
@@ -85,7 +88,7 @@ const [addAddress, setaddAddress] = useState(false)
                     <p>Qty {product.quantity}</p>
                     <p
                       onClick={(e) => {
-                        addCartItem(product.id);
+                        addCartItem(product._id);
                         e.stopPropagation();
                       }}
                       className="text-red  hover:bg-green-200 rounded-full"
@@ -100,7 +103,7 @@ const [addAddress, setaddAddress] = useState(false)
               ₹{product.offerPrice * product.quantity}
             </p>
             <button
-              onClick={() => removeformCart(product.id)}
+              onClick={() => removeformCart(product._id)}
               className="cursor-pointer mx-auto"
             >
               <svg

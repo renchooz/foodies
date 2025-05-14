@@ -15,7 +15,8 @@ const NavBar = () => {
     setshowUserLogin,
     SearchQuerry,
     setSearchQuerry,
-    getCartItems
+    getCartItems,
+    setCardItems
   } = useAppContext();
   let prod = useLocation().pathname.includes("product");
 
@@ -25,6 +26,7 @@ const NavBar = () => {
       if(data.status){
         setUser(null)
         toast.success(data.message)
+        setCardItems({})
         nevigate("/")
       }
       else{

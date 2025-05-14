@@ -7,7 +7,7 @@ const FoodDetails = () => {
   const { id } = useParams();
   const { product, nevigate, addCartItem } = useAppContext();
 
-  const food = product.find((item) => String(item.id) === String(id));
+  const food = product.find((item) => String(item._id) === String(id));
   const [thumbnail, setThumbnail] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
 
@@ -65,7 +65,7 @@ const FoodDetails = () => {
 <div className="gap-4 flex">
 <button
             onClick={() => {
-              addCartItem(food.id);
+              addCartItem(food._id);
              
             }}
             className="px-4 py-2  bg-slate-200 hover:bg-slate-300 rounded-xl"
@@ -74,7 +74,7 @@ const FoodDetails = () => {
           </button>
           <button
             onClick={() => {
-              addCartItem(food.id);
+              addCartItem(food._id);
               nevigate("/cart")
             }}
             className="px-4 py-2  bg-[#E9AB54] hover:bg-[#d1943f]  text-white border rounded-xl"

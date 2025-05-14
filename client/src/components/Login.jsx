@@ -3,34 +3,36 @@ import { useAppContext } from "../context/AppContext";
 import axios from "axios";
 import toast from "react-hot-toast";
 const Login = () => {
-    let {setshowUserLogin,setUser,User} = useAppContext()
+    let {setshowUserLogin,setUser,User,setCardItems} = useAppContext()
     const [state, setState] = React.useState("login");
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
-    let SubmitHandler =async (e)=>{
-        e.preventDefault()
-        try {
-            const {data} = await axios.post(`http://localhost:4000/api/user/${state}`,{
-                name,
-                email,
-                password
-            })
-            if(data.status){
-                toast.success(data.message)
-                setUser(data.user)
-                setshowUserLogin(false)  
-            }else{
-                toast.error(data.message)
-            }
-          
-        } catch (error) {
-            toast.error(error.message)
-        }
-        
-       
+   let SubmitHandler = async (e) => {
+  e.preventDefault();
+  try {
+    const { data } = await axios.post(`http://localhost:4000/api/user/${state}`, {
+      name,
+      email,
+      password,
+    });
+
+    if (data.status) {
+      toast.success(data.message);
+      
+
+      setshowUserLogin(false);
+
+     
+      console.log("Logged in user:", data.user);
+    } else {
+      toast.error(data.message);
     }
-console.log(User)
+  } catch (error) {
+    toast.error(error.message);
+  }
+};
+
 
     return (
        <div onClick={()=>setshowUserLogin(false)} className="fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center z-30 bg-black/50 h-full"
