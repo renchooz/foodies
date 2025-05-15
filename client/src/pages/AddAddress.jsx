@@ -1,6 +1,10 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useAppContext } from '../context/AppContext';
 
 const AddAddress = ({adress}) => {
+  const {nevigate} = useAppContext()
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -19,10 +23,22 @@ const AddAddress = ({adress}) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
-    console.log('Submitted Address:', formData);
-    adress(false)
+    try {
+      const {data} = await axios.post("http://localhost:4000/api/address/add",
+      formData
+      )
+      if(data.status){
+        toast.success(data.message)
+        adress(false)
+        
+      }else{
+         toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
 
   };
 

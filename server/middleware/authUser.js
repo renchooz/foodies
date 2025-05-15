@@ -11,6 +11,8 @@ const authUser = async (req, res, next) => {
     
     if (decodeToken.id) {
       req.userId = decodeToken.id;
+      req.email = decodeToken.email
+    
     } else {
       return res.status(401).json({ status: false, message: "Not authorized" });
     }

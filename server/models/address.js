@@ -3,16 +3,18 @@ import mongoose from "mongoose";
 const addressSchema = new mongoose.Schema({
     userId:{
         type: String,
-        required:true
+        required:true,
+        
     },
     name:{
         type: String,
         required:true
     },
     email:{
-        type: String,
+         type: String,
         required:true
     },
+    
     phone:{
         type:String,
         required:true
