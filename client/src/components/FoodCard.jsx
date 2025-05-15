@@ -66,7 +66,7 @@ const FoodCard = ({ product, currency }) => {
             }}
             className="text-[#E9AB54]"
           >
-            {!CardItems[product._id] ? (
+            {CardItems && !CardItems[product._id] ? (
               <button
                 className="flex items-center justify-center gap-1 bg-[#E9AB54] border border-indigo-300 md:w-[80px] w-[64px] h-[34px] rounded text-white font-medium"
                 onClick={(e) => {
@@ -88,7 +88,7 @@ const FoodCard = ({ product, currency }) => {
                 >
                   -
                 </button>
-                <span className="w-5 text-center">{CardItems[product._id]}</span>
+             <span className="w-5 text-center">{CardItems?.[product._id] || 0}</span>
                 <button
                   onClick={(e) => {
                     addCartItem(product._id);

@@ -57,7 +57,8 @@ export const login = async (req, res) => {
     return res.json({
       status:true,
       message: "User logged in",
-      user: { email: user.email, name: user.name },
+      user: { email: user.email, name: user.name, cartItems : user.cartItems},
+      
     });
   } catch (error) {
     console.log(error.message);

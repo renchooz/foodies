@@ -3,7 +3,7 @@ import { useAppContext } from "../context/AppContext";
 import axios from "axios";
 import toast from "react-hot-toast";
 const Login = () => {
-    let {setshowUserLogin,setUser,User,setCardItems} = useAppContext()
+    let {setshowUserLogin,setUser,User,setCardItems,nevigate} = useAppContext()
     const [state, setState] = React.useState("login");
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
@@ -11,6 +11,7 @@ const Login = () => {
    let SubmitHandler = async (e) => {
   e.preventDefault();
   try {
+    
     const { data } = await axios.post(`http://localhost:4000/api/user/${state}`, {
       name,
       email,
@@ -19,10 +20,12 @@ const Login = () => {
 
     if (data.status) {
       toast.success(data.message);
-      
 
+      nevigate("/")
+     
       setshowUserLogin(false);
-
+setUser(data.user)
+  setCardItems(data.user.cartItems); 
      
       console.log("Logged in user:", data.user);
     } else {
