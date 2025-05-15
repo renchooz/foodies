@@ -3,7 +3,8 @@ import ProductModel from "../models/Product.js";
 
 export const myOrderCod = async (req, res) => {
   try {
-    const { userId, address, items } = req.body;
+    const { address, items } = req.body;
+    const userId = req.userId;
 
     // Validate address and items
     if (!address || !items || items.length === 0) {

@@ -19,7 +19,6 @@ export const AppContextProvider = ({children})=>{
     const [CardItems, setCardItems] = useState({})
     const [SearchQuerry, setSearchQuerry] = useState({})
     const WhyWeBestData = whyWeAreBest
-
     const fetchSeller = async()=>{
       try {
         const {data}=  await axios.get("http://localhost:4000/api/seller/is-auth")

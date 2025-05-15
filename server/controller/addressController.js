@@ -27,9 +27,9 @@ export const addAddress = async (req, res) => {
 
 export const getAddress = async(req,res)=>{
     try {
-        const {userId} = req.body
-        const addresses =await addressModel.find({userId})
-        res.json({status:true, message:addresses})
+        const userId = req.userId
+        const addresses = await addressModel.find({userId})
+        res.json({status:true, addresses})
     } catch (error) {
         console.log(error.message)
         res.json({status:false,message:error.message}) 
