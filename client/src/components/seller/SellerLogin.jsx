@@ -13,7 +13,9 @@ const SellerLogin = () => {
   const submitHandler = async (e) => {
   e.preventDefault();
   try {
-    const { data } = await axios.post("http://localhost:4000/api/seller/login", { email, password });
+    const { data } = await axios.post("http://localhost:4000/api/seller/login", { email, password, },{
+  withCredentials: true,
+});
 
     if (data.status) {
       setisSeller(true);

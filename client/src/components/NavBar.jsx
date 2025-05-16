@@ -22,7 +22,9 @@ const NavBar = () => {
 
   let logout = async () => {
     try {
-      const {data} = await axios.post("http://localhost:4000/api/user/logout")
+      const {data} = await axios.post("http://localhost:4000/api/user/logout",{
+  withCredentials: true,
+})
       if(data.status){
         setUser(null)
         toast.success(data.message)

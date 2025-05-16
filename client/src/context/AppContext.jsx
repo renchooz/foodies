@@ -21,7 +21,9 @@ export const AppContextProvider = ({children})=>{
     const WhyWeBestData = whyWeAreBest
     const fetchSeller = async()=>{
       try {
-        const {data}=  await axios.get("http://localhost:4000/api/seller/is-auth")
+        const {data}=  await axios.get("http://localhost:4000/api/seller/is-auth",{
+  withCredentials: true,
+})
         if(data.status){
           setisSeller(true)
         }
@@ -35,12 +37,12 @@ export const AppContextProvider = ({children})=>{
 
     const fetchUser = async()=>{
       try {
-        const {data} = await axios.get("http://localhost:4000/api/user/is-auth")
+        const {data} = await axios.get("http://localhost:4000/api/user/is-auth",{
+  withCredentials: true,
+})
         if(data.status){
           setUser(data.user)
           setCardItems(data.user.cartItems)
-        }else{
-          toast.error(data.message)
         }
       } catch (error) {
           setUser(null)
@@ -52,7 +54,9 @@ export const AppContextProvider = ({children})=>{
      
     let fetchProducts = async ()=>{
       try {
-        const {data} = await axios.get("http://localhost:4000/api/product/list")
+        const {data} = await axios.get("http://localhost:4000/api/product/list",{
+  withCredentials: true,
+})
         if(data.status){
           setproduct(data.product)
         }else{
@@ -69,7 +73,9 @@ export const AppContextProvider = ({children})=>{
       const { data } = await axios.post("http://localhost:4000/api/cart/update", {
         userId: User._id, 
         cartItems: CardItems,
-      });
+      },{
+  withCredentials: true,
+});
       if (!data.status) {
         toast.error(data.message);
 

@@ -16,7 +16,9 @@ const Login = () => {
       name,
       email,
       password,
-    });
+    },{
+  withCredentials: true,
+});
 
     if (data.status) {
       toast.success(data.message);

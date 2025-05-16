@@ -8,7 +8,9 @@ const MyOrders = () => {
 
   const fetchOrders = async () => {
     try {
-      const { data } = await axios.get("http://localhost:4000/api/orders/user");
+      const { data } = await axios.get("http://localhost:4000/api/orders/user",{
+  withCredentials: true,
+});
       if (data.status) {
         setOrders(data.orders);
       }

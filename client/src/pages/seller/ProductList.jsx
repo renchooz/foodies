@@ -10,7 +10,9 @@ const ProductList = () => {
     try {
       const { data } = await axios.post(
         "http://localhost:4000/api/product/stock",
-        { id, inStock }
+        { id, inStock },{
+  withCredentials: true,
+}
       );
       if (data.status) {
         fetchProducts();

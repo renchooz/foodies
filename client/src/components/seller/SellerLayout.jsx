@@ -15,7 +15,9 @@ const {setisSeller,nevigate} = useAppContext()
     ];
     const logout = async()=>{
         try {
-          const {data} = await axios.post("http://localhost:4000/api/seller/logout")
+          const {data} = await axios.post("http://localhost:4000/api/seller/logout",{
+              withCredentials: true,
+          })
           if(data.status){
             setisSeller(false)
             nevigate("/")

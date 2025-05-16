@@ -30,7 +30,9 @@ const AddProducts = () => {
     try {
       const { data } = await axios.post(
         "http://localhost:4000/api/product/add",
-        formData
+        formData,{
+  withCredentials: true,
+}
       );
       if (data.status) {
         toast.success(data.message);

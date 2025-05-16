@@ -8,7 +8,9 @@ const Orders = () => {
 
   const fetchOrders = async() => {
   try {
-     const {data} = await axios.get("http://localhost:4000/api/orders/admin")
+     const {data} = await axios.get("http://localhost:4000/api/orders/admin",{
+  withCredentials: true,
+})
    if(data.status){
     setOrders(data.orders)
    }
