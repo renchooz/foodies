@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { dummyOrders } from '../../products';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
 
-  const fetchOrders = () => {
-    setOrders(dummyOrders);
+  const fetchOrders = async() => {
+  try {
+     const {data} = await axios.get("http://localhost:4000/api/orders/admin")
+   if(data.status){
+    setOrders(data.orders)
+   }
+  } catch (error) {
+    toast.error(error.message)
+  }
   };
+  console.log(orders)
 
   useEffect(() => {
     fetchOrders();
@@ -31,7 +41,7 @@ const Orders = () => {
                   alt="Order"
                 />
                 <div className="flex flex-col space-y-1">
-                  {order.products.map((item, idx) => (
+                  {order.items.map((item, idx) => (
                     <p key={idx} className="text-gray-700 font-medium">
                       {item.name} 
                       <span className={`ml-2 text-sm text-indigo-500 ${item.quantity < 2 && 'hidden'}`}>
@@ -53,8 +63,8 @@ const Orders = () => {
 
               {/* Price Details */}
               <div className="flex flex-col space-y-1 text-gray-800">
-                {order.products.map((item, id) => (
-                  <p key={id} className="text-base font-semibold">₹{item.price}</p>
+                {order.items.map((item, id) => (
+                  <p key={id} className="text-base font-semibold">₹{order.amount}</p>
                 ))}
               </div>
 

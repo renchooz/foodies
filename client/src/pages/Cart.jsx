@@ -74,15 +74,17 @@ let PlaceOrder = async () => {
       );
 
       if (response.data.status) {
-        alert("Order Placed Successfully");
+      console.log(itemsArray)
+        toast.success("Order Placed Successfully");
         // redirect or clear cart logic here
       } else {
-        alert(response.data.message);
+        
+        toast.error(response.data.message);
       }
     }
   } catch (error) {
     console.log(error.message);
-    alert("Failed to place order");
+    toast.error("Failed to place order");
   }
 };
 

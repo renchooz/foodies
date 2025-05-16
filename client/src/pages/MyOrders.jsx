@@ -1,65 +1,91 @@
 import React, { useEffect, useState } from "react";
 import { myOrders } from "../products";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const MyOrders = () => {
   const [Orders, setOrders] = useState([]);
 
-  const fetchOrders = () => {
-    setOrders(myOrders);
+  const fetchOrders = async () => {
+    try {
+      const { data } = await axios.get("http://localhost:4000/api/orders/user");
+      if (data.status) {
+        setOrders(data.orders);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
-
+  console.log(Orders);
   useEffect(() => {
     fetchOrders();
   }, []);
 
   return (
-    <div className="mt-10 px-4">
-      <div className="flex flex-col items-end w-24 mb-6">
-        <p className="text-2xl text-[#E9AB54]">Products</p>
-        <div className="w-12 h-[1px] bg-black/50"></div>
+    <div className="mt-12 px-6">
+      <div className="mb-8 text-right">
+        <h2 className="text-3xl font-bold text-[#E9AB54]">My Orders</h2>
+        <div className="w-16 h-1 bg-black/60 mt-1 ml-auto rounded-full"></div>
       </div>
 
-      <div className="w-full flex flex-col gap-10">
+      <div className="space-y-8">
         {Orders.map((order, index) => (
           <div
             key={index}
-            className=" bg-[#E9AB54]/20 border-black rounded-lg p-4"
+            className="bg-white border border-gray-200 shadow-md rounded-xl p-6"
           >
-            <div className="grid grid-cols-4 text-center text-sm font-medium text-gray-700 mb-2">
-              <span>Order ID: {order._id}</span>
-              <span
-                className={
-                  order.status === "Delivered"
-                    ? "text-green-700"
-                    : order.status === "Pending"
-                    ? "text-yellow-600"
-                    :order.status === "Canceled"
-                    ? "text-red-700"
-                    :null
-                }
-              >
-                Status: {order.status}
-              </span>
-              <span>Date: {order.orderDate}</span>
-              <span>Payment: {order.paymentMethod}</span>
+            <div className="flex flex-wrap justify-between items-center text-sm text-gray-600 mb-4">
+              <p>
+                <span className="font-semibold text-gray-800">Order ID:</span>{" "}
+                {order._id}
+              </p>
+              <p>
+                <span className="font-semibold text-gray-800">Date:</span>{" "}
+                {order.createdAt}
+              </p>
+              <p>
+                <span className="font-semibold text-gray-800">Payment:</span>{" "}
+                {order.paymentMethod}
+              </p>
+              <p>
+                <span className="font-semibold text-gray-800">Status:</span>{" "}
+                <span
+                  className={`px-2 py-1 rounded-full text-xs font-bold ${
+                    order.status === "Delivered"
+                      ? "bg-green-100 text-green-700"
+                      : order.status === "Pending"
+                      ? "bg-yellow-100 text-yellow-700"
+                      : order.status === "Canceled"
+                      ? "bg-red-100 text-red-700"
+                      : "bg-gray-100 text-gray-600"
+                  }`}
+                >
+                  {order.status}
+                </span>
+              </p>
             </div>
-            <div className="mt-3">
-              <div className="grid grid-cols-4 font-semibold text-center text-gray-600 pb-1 mb-2">
+
+            <div>
+              <div className="grid grid-cols-4 gap-4 font-semibold text-center text-gray-700 border-b pb-2">
                 <span>Product</span>
                 <span>Quantity</span>
                 <span>Price</span>
-
                 <span>Total</span>
               </div>
-              {order.products.map((product, i) => (
+
+              {order.items.map((product, i) => (
                 <div
                   key={i}
-                  className="grid grid-cols-4 text-center text-sm py-1 "
+                  className="grid grid-cols-4 gap-4 text-center text-sm py-2 border-b last:border-none"
                 >
-                  <span>{product.name}</span>
+                  <img
+                    src={product.product.image}
+                    alt={product.product.name}
+                    className="h-16 w-16 object-cover rounded mx-auto"
+                  />
                   <span>{product.quantity}</span>
-                  <span>{product.price}</span>
-                  <span>₹{product.quantity * product.price}</span>
+                  <span>₹{product.product.offerPrice}</span>
+                  <span className="font-medium">₹{order.amount}</span>
                 </div>
               ))}
             </div>

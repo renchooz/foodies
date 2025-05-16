@@ -45,7 +45,7 @@ export const myOrderCod = async (req, res) => {
 
 export const getUserOrder= async(req,res)=>{
 try {
-    const{userId}= req.body
+    const userId= req.userId
     const orders = await OrderModel.find({userId}).populate("items.product").populate("address")
     if(orders.length === 0){
         return res.json({status:false,message:"No orders found"})

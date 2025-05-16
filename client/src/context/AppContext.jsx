@@ -90,7 +90,10 @@ export const AppContextProvider = ({children})=>{
     useEffect(() => {
     fetchProducts()
     fetchSeller()
-    fetchUser()
+    
+fetchUser()
+    
+    
     },[])
     //add product to cart
     let addCartItem = (itemId)=>{
