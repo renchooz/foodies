@@ -29,7 +29,7 @@ const AddProducts = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/api/product/add",
+        "https://foodies-backend-vkuo.onrender.com/api/product/add",
         formData,{
   withCredentials: true,
 }

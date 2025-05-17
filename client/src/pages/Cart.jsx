@@ -40,7 +40,7 @@ const Cart = () => {
 
   const updateAdress = async () => {
     try {
-      const { data } = await axios.get("http://localhost:4000/api/address/get",{
+      const { data } = await axios.get("https://foodies-backend-vkuo.onrender.com/api/address/get",{
   withCredentials: true,
 });
       if (data.status) {

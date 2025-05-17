@@ -9,7 +9,7 @@ const ProductList = () => {
   const handleToggleStock = async (id, inStock) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/api/product/stock",
+        "https://foodies-backend-vkuo.onrender.com/api/product/stock",
         { id, inStock },{
   withCredentials: true,
 }
