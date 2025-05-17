@@ -26,7 +26,7 @@ const AddAddress = ({adress}) => {
   const handleSubmit =async (e) => {
     e.preventDefault();
     try {
-      const {data} = await axios.post("https://foodies-backend-vkuo.onrender.com/api/address/add",
+      const {data} = await axios.post("https://foodies-backend-mu0d.onrender.com/api/address/add",
       formData,{
   withCredentials: true,
 }

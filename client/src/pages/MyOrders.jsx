@@ -8,7 +8,7 @@ const MyOrders = () => {
 
   const fetchOrders = async () => {
     try {
-      const { data } = await axios.get("https://foodies-backend-vkuo.onrender.com/api/orders/user",{
+      const { data } = await axios.get("https://foodies-backend-mu0d.onrender.com/api/orders/user",{
   withCredentials: true,
 });
       if (data.status) {

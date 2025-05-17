@@ -15,7 +15,7 @@ const {setisSeller,nevigate} = useAppContext()
     ];
     const logout = async()=>{
         try {
-          const {data} = await axios.post("https://foodies-backend-vkuo.onrender.com/api/seller/logout",{
+          const {data} = await axios.post("https://foodies-backend-mu0d.onrender.com/api/seller/logout",{
               withCredentials: true,
           })
           if(data.status){

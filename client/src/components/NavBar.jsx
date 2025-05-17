@@ -22,7 +22,7 @@ const NavBar = () => {
 
   let logout = async () => {
     try {
-      const {data} = await axios.post("https://foodies-backend-vkuo.onrender.com/api/user/logout",{
+      const {data} = await axios.post("https://foodies-backend-mu0d.onrender.com/api/user/logout",{
   withCredentials: true,
 })
       if(data.status){

@@ -21,7 +21,7 @@ export const AppContextProvider = ({children})=>{
     const WhyWeBestData = whyWeAreBest
     const fetchSeller = async()=>{
       try {
-        const {data}=  await axios.get("https://foodies-backend-vkuo.onrender.com/api/seller/is-auth",{
+        const {data}=  await axios.get("https://foodies-backend-mu0d.onrender.com/api/seller/is-auth",{
   withCredentials: true,
 })
         if(data.status){
@@ -37,7 +37,7 @@ export const AppContextProvider = ({children})=>{
 
     const fetchUser = async()=>{
       try {
-        const {data} = await axios.get("https://foodies-backend-vkuo.onrender.com/api/user/is-auth",{
+        const {data} = await axios.get("https://foodies-backend-mu0d.onrender.com/api/user/is-auth",{
   withCredentials: true,
 })
         if(data.status){
@@ -54,7 +54,7 @@ export const AppContextProvider = ({children})=>{
      
     let fetchProducts = async ()=>{
       try {
-        const {data} = await axios.get("https://foodies-backend-vkuo.onrender.com/api/product/list",{
+        const {data} = await axios.get("https://foodies-backend-mu0d.onrender.com/api/product/list",{
   withCredentials: true,
 })
         if(data.status){
@@ -70,7 +70,7 @@ export const AppContextProvider = ({children})=>{
    useEffect(() => {
   const CartUpdate = async () => {
     try {
-      const { data } = await axios.post("https://foodies-backend-vkuo.onrender.com/api/cart/update", {
+      const { data } = await axios.post("https://foodies-backend-mu0d.onrender.com/api/cart/update", {
         userId: User._id, 
         cartItems: CardItems,
       },{

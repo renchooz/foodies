@@ -12,7 +12,7 @@ const Login = () => {
   e.preventDefault();
   try {
     
-    const { data } = await axios.post(`https://foodies-backend-vkuo.onrender.com/api/user/${state}`, {
+    const { data } = await axios.post(`https://foodies-backend-mu0d.onrender.com/api/user/${state}`, {
       name,
       email,
       password,

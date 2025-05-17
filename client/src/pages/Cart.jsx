@@ -40,7 +40,7 @@ const Cart = () => {
 
   const updateAdress = async () => {
     try {
-      const { data } = await axios.get("https://foodies-backend-vkuo.onrender.com/api/address/get",{
+      const { data } = await axios.get("https://foodies-backend-mu0d.onrender.com/api/address/get",{
   withCredentials: true,
 });
       if (data.status) {
@@ -67,7 +67,7 @@ let PlaceOrder = async () => {
       }));
 
       const response = await axios.post(
-        "http://localhost:4000/api/orders/cod",
+        "https://foodies-backend-mu0d.onrender.com/api/orders/cod",
         {
           address: selectedAdress,
           items: itemsArray, // ✅ now it's iterable
