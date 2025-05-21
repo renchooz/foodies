@@ -10,10 +10,12 @@ const SellerLogin = () => {
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');  
   
+
+  
   const submitHandler = async (e) => {
   e.preventDefault();
   try {
-    const { data } = await axios.post("https://foodies-backend-mu0d.onrender.com/api/seller/login", { email, password, },{
+    const { data } = await axios.post("https://foodies-backend-mu0d.onrender.com/api/seller/login", { email, password },{
   withCredentials: true,
 });
 
@@ -22,6 +24,8 @@ const SellerLogin = () => {
       console.log(isSeller)
       nevigate("/seller");
       toast.success("Login Success");
+      setemail("")
+      setpassword("")
     } else {
       toast.error(data.message || "Login failed");
     }

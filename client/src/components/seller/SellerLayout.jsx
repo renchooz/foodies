@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 const SellerLayout = () => {
 
  
-const {setisSeller,nevigate} = useAppContext()
+const {setisSeller,nevigate,isSeller} = useAppContext()
     const sidebarLinks = [
         { name: "Add Product", path: "/seller" },
         { name: "Product List", path: "/seller/product-list" },
@@ -15,12 +15,11 @@ const {setisSeller,nevigate} = useAppContext()
     ];
     const logout = async()=>{
         try {
-          const {data} = await axios.post("https://foodies-backend-mu0d.onrender.com/api/seller/logout",{
-              withCredentials: true,
-          })
+          const {data} = await axios.post("https://foodies-backend-mu0d.onrender.com/api/seller/logout", {}, {
+  withCredentials: true,
+})
           if(data.status){
             setisSeller(false)
-            nevigate("/")
             toast.success(data.message)
           }else{
             toast.error(data.message)
@@ -29,6 +28,7 @@ const {setisSeller,nevigate} = useAppContext()
          toast.error(error.message)
         }
     }
+    if(!isSeller) return null
 
     return (
       <>

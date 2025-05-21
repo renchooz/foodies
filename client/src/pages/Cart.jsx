@@ -15,10 +15,12 @@ const Cart = () => {
     updateCartItem,
     removeformCart,
     getCartItems,
+    setCardItems,
     CardItems,
     addCartItem,
     CalculateAmount,
     User,
+   
   } = useAppContext();
   const [cartArray, setcartArray] = useState([]);
   const [Address, setAddress] = useState([]);
@@ -26,6 +28,7 @@ const Cart = () => {
   const [selectedAdress, setselectedAdress] = useState(null);
   const [paymentOption, setpaymentOption] = useState("COD");
   const [addAddress, setaddAddress] = useState(false);
+ 
   const getCart = () => {
     let Temparr = [];
     for (const key in CardItems) {
@@ -45,6 +48,7 @@ const Cart = () => {
 });
       if (data.status) {
         setAddress(data.addresses);
+        
         if (data.addresses.length > 0) {
           setselectedAdress(data.addresses[0]);
         }
@@ -77,6 +81,7 @@ let PlaceOrder = async () => {
 
       if (response.data.status) {
       console.log(itemsArray)
+      setCardItems({})
         toast.success("Order Placed Successfully");
         // redirect or clear cart logic here
       } else {
@@ -197,8 +202,8 @@ let PlaceOrder = async () => {
       ) : (
         <AddAddress adress={setaddAddress} />
       )}
-
-      <div className="max-w-[360px] w-full bg-gray-100/40 p-5 max-md:mt-16 border border-gray-300/70">
+<div className="w-full flex items-center justify-center">
+      <div className="max-w-[360px]  w-full bg-black-100/40 p-5 max-md:mt-16 border border-gray-300/70">
         <h2 className="text-xl md:text-xl font-medium">Order Summary</h2>
         <hr className="border-gray-300 my-5" />
 
@@ -283,6 +288,7 @@ let PlaceOrder = async () => {
         >
           {paymentOption === "COD" ? "Place Order" : "Proceed To Pay"}
         </button>
+      </div>
       </div>
     </div>
   ) : null;

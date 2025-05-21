@@ -1,11 +1,16 @@
 import mongoose from "mongoose";
 
-// Define the schema
+
 const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
       required: [true, "Name is required"],
+    },
+    phone: {
+      type: String,
+      required: [true, "Phone is required"],  
+      
     },
     email: {
       type: String,
@@ -20,6 +25,12 @@ const userSchema = new mongoose.Schema(
       type: Object,
       default: {},
     },
+    otp:{
+      type:Number
+    },
+    otpCreatedAt:{
+      type:Date
+    }
   },
   {
     minimize: false, // Keeps empty objects in DB

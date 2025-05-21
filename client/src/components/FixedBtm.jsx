@@ -12,8 +12,8 @@ const FixedBtm = () => {
    <div className='fixed md:hidden bottom-0 h-[15vw] bg-white shadow-inner border-black  px-1 rounded-sm w-[88%] py-[2vw]'>
         <ul className='flex items-center justify-between'>
           
-           <NavLink className='items-center flex gap-1 bg-[#E9AB54] px-5 py-2 rounded-2xl' to={"product"}><CiSearch />Search</NavLink>
-           <NavLink className='items-center flex gap-1 bg-[#E9AB54] px-5 py-2 rounded-2xl' to={"profile"}><CgProfile />Profile</NavLink>
+           <NavLink  onClick={()=>scrollTo(0,0)} className='items-center flex gap-1 bg-[#E9AB54] px-5 py-2 rounded-2xl' to={"product"}><CiSearch />Search</NavLink>
+           <NavLink className='items-center flex gap-1 bg-[#E9AB54] px-5 py-2 rounded-2xl' to={"/profile"}><CgProfile />Profile</NavLink>
 
         </ul>
     </div>

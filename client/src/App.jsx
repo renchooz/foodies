@@ -18,17 +18,21 @@ import SellerLayout from './components/seller/SellerLayout'
 import AddProducts from './pages/seller/AddProducts'
 import ProductList from './pages/seller/ProductList'
 import Orders from './pages/seller/Orders'
+import Profile from './pages/Profile'
+
 
 
 
 
 const App = () => {
   let seller = useLocation().pathname.includes("seller")
+  let profilePage = useLocation().pathname.includes("profile")
+
  
   let {showuserLogin,isSeller} = useAppContext()
   return (
     <div>
-      {seller ? null : <NavBar/>}
+      {seller || profilePage ? null : <NavBar/>}
       {showuserLogin ?<Login/>:null}
       <Toaster/>
       
@@ -39,7 +43,9 @@ const App = () => {
           <Route path='/category/:cateogory' element={<ProductCateogory/>}/>
           <Route path='/category/:cateogory/:id' element={<FoodDetails/>}/>
           <Route path='/cart' element={<Cart/>}/>
+           <Route path='/profile' element={<Profile/>}/>
           <Route path='/orders' element={<MyOrders/>}/>
+
           <Route path='/seller' element={isSeller ? <SellerLayout/> :<SellerLogin/>}>
           <Route index element={isSeller ? <AddProducts/>:null}/>
           <Route path='product-list' element={<ProductList/>}/>
@@ -49,7 +55,7 @@ const App = () => {
 
           </Route>
 
-   
+         
 
 
 
@@ -59,7 +65,7 @@ const App = () => {
        
       </div>
      
-     {!seller ?<Footer/> : null}
+     {seller || profilePage ? null : <Footer/>}
     </div>
   )
 }
