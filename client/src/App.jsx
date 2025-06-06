@@ -36,7 +36,7 @@ const App = () => {
       {showuserLogin ?<Login/>:null}
       <Toaster/>
       
-      <div className={`${isSeller ?"":"px-6 md:px-16 lg:px-24 xl:px-32"}`}>
+      <div className={`${isSeller || profilePage ?"":"px-6 md:px-16 lg:px-24 xl:px-32"}`}>
         <Routes>
           <Route path='/' element={<HomePage/>}/>
           <Route path='/product' element={<AllProducts/>}/>

@@ -80,7 +80,6 @@ let PlaceOrder = async () => {
       );
 
       if (response.data.status) {
-      console.log(itemsArray)
       setCardItems({})
         toast.success("Order Placed Successfully");
         // redirect or clear cart logic here
@@ -91,7 +90,7 @@ let PlaceOrder = async () => {
     }
   } catch (error) {
     console.log(error.message);
-    toast.error("Failed to place order");
+    toast.error("Please Add Address");
   }
 };
 
@@ -107,9 +106,9 @@ let PlaceOrder = async () => {
     }
   }, [User,addAddress]);
 
-  console.log(CardItems);
+  
   return product.length > 0 && CardItems ? (
-    <div className="flex  flex-col md:flex-row mt-5  w-full ">
+    <div className="flex  justify-between flex-col md:flex-row mt-5  w-full ">
       {!addAddress ? (
         <div className="flex-1 max-w-4xl">
           <h1 className="text-3xl font-medium mb-10">
@@ -202,7 +201,7 @@ let PlaceOrder = async () => {
       ) : (
         <AddAddress adress={setaddAddress} />
       )}
-<div className="w-full flex items-center justify-center">
+<div className="md:w-[30%] w-full flex items-center justify-center">
       <div className="max-w-[360px]  w-full bg-black-100/40 p-5 max-md:mt-16 border border-gray-300/70">
         <h2 className="text-xl md:text-xl font-medium">Order Summary</h2>
         <hr className="border-gray-300 my-5" />

@@ -19,7 +19,7 @@ const ProductCateogory = () => {
           </div>
         )}
         {filteredItems.length > 0 ?(
-          <div className='flex  md:justify-start justify-center mt-10 gap-6'>
+          <div className='flex flex-wrap  md:justify-start justify-center mt-10 gap-4 sm:6'>
             {filteredItems.map((product)=>(
               <FoodCard key={product._id} product={product}/>
 

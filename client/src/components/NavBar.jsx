@@ -38,221 +38,274 @@ const NavBar = () => {
         toast.error(error.message)
     }
   };
+  
   useEffect(() => {
     if (SearchQuerry.length > 0) {
       nevigate("/product");
     }
   }, [SearchQuerry]);
+
   return (
-    <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300  relative transition-all">
+    <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-200 bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm relative transition-all duration-300">
       <NavLink
         to={"/"}
         onClick={() => {
           setOpen(false);
-          
         }}
+        className="transform hover:scale-105 transition-transform duration-200"
       >
-        {!prod && <img className="rounded-full  w-20" src={logo} alt="" />}
+        {!prod && (
+          <div className="relative">
+            <img className="rounded-full w-20 shadow-lg ring-2 ring-[#E9AB54]/20" src={logo} alt="" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#E9AB54]/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+        )}
       </NavLink>
 
       {/* Desktop Menu */}
-      <div className="hidden sm:flex items-center gap-8 ">
-        <NavLink to={"/"} className="hover:text-[#E9AB54]">
+      <div className="hidden sm:flex items-center gap-8">
+        <NavLink 
+          to={"/"} 
+          className={({ isActive }) => 
+            `relative hover:text-[#E9AB54] transition-all duration-300 font-medium ${
+              isActive ? 'text-[#E9AB54]' : 'text-gray-700'
+            } after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#E9AB54] after:left-0 after:-bottom-1 hover:after:w-full after:transition-all after:duration-300`
+          }
+        >
           Home
         </NavLink>
-        <NavLink to={"/seller"} className="hover:text-[#E9AB54]">
+        <NavLink 
+          to={"/seller"} 
+          className={({ isActive }) => 
+            `relative hover:text-[#E9AB54] transition-all duration-300 font-medium ${
+              isActive ? 'text-[#E9AB54]' : 'text-gray-700'
+            } after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#E9AB54] after:left-0 after:-bottom-1 hover:after:w-full after:transition-all after:duration-300`
+          }
+        >
           About
         </NavLink>
-        <NavLink to={"/product"} className="hover:text-[#E9AB54]">
-          Todays Special
+        <NavLink 
+          to={"/product"} 
+          className={({ isActive }) => 
+            `relative hover:text-[#E9AB54] transition-all duration-300 font-medium ${
+              isActive ? 'text-[#E9AB54]' : 'text-gray-700'
+            } after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-[#E9AB54] after:left-0 after:-bottom-1 hover:after:w-full after:transition-all after:duration-300`
+          }
+        >
+          Today's Special
         </NavLink>
 
-        <div className="hidden lg:flex items-center text-sm gap-2 border bg-[#DEF2F1] px-3 rounded-full">
+        <div className="hidden lg:flex items-center text-sm gap-2 border-2 border-[#DEF2F1] bg-[#DEF2F1]/50 px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 focus-within:ring-2 focus-within:ring-[#E9AB54]/30">
           <input
             onChange={(e) => setSearchQuerry(e.target.value)}
-            className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500 text-[#E9AB54] "
+            className="py-1 w-full bg-transparent outline-none placeholder-gray-500 text-[#E9AB54] font-medium"
             type="text"
-            placeholder="Search products"
+            placeholder="Search delicious food..."
           />
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M10.836 10.615 15 14.695"
-              stroke="#7A7B7D"
-              stroke-width="1.2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              clip-rule="evenodd"
-              d="M9.141 11.738c2.729-1.136 4.001-4.224 2.841-6.898S7.67.921 4.942 2.057C2.211 3.193.94 6.281 2.1 8.955s4.312 3.92 7.041 2.783"
-              stroke="#7A7B7D"
-              stroke-width="1.2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+          <div className="p-1 rounded-full hover:bg-[#E9AB54]/20 transition-colors duration-200 cursor-pointer">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.836 10.615 15 14.695"
+                stroke="#7A7B7D"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                clipRule="evenodd"
+                d="M9.141 11.738c2.729-1.136 4.001-4.224 2.841-6.898S7.67.921 4.942 2.057C2.211 3.193.94 6.281 2.1 8.955s4.312 3.92 7.041 2.783"
+                stroke="#7A7B7D"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
         </div>
 
         <div
           onClick={() => nevigate("/cart")}
-          className=" relative cursor-pointer"
+          className="relative cursor-pointer group"
         >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 14 14"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M.583.583h2.333l1.564 7.81a1.17 1.17 0 0 0 1.166.94h5.67a1.17 1.17 0 0 0 1.167-.94l.933-4.893H3.5m2.333 8.75a.583.583 0 1 1-1.167 0 .583.583 0 0 1 1.167 0m6.417 0a.583.583 0 1 1-1.167 0 .583.583 0 0 1 1.167 0"
-              stroke="#615fff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-          <button className="absolute -top-2 -right-3 text-xs text-black bg-[#E9AB54] w-[18px] h-[18px] rounded-full">
+          <div className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="group-hover:scale-110 transition-transform duration-200"
+            >
+              <path
+                d="M.583.583h2.333l1.564 7.81a1.17 1.17 0 0 0 1.166.94h5.67a1.17 1.17 0 0 0 1.167-.94l.933-4.893H3.5m2.333 8.75a.583.583 0 1 1-1.167 0 .583.583 0 0 1 1.167 0m6.417 0a.583.583 0 1 1-1.167 0 .583.583 0 0 1 1.167 0"
+                stroke="#615fff"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          <div className="absolute -top-1 -right-1 text-xs text-white bg-[#E9AB54] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-lg animate-pulse">
             {getCartItems()}
-          </button>
+          </div>
         </div>
 
         {!User ? (
           <button
             onClick={() => setshowUserLogin(true)}
-            className="cursor-pointer px-8 py-2 bg-[#E9AB54] hover:bg-white hover:border transition text-black rounded-full"
+            className="cursor-pointer px-6 py-2.5 bg-[#E9AB54] hover:bg-[#E9AB54]/90 hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-white font-semibold rounded-full shadow-md"
           >
             Login
           </button>
         ) : (
-          <div className="relative group  rounded-full flex flex-col items-center justify-center ">
-            <img
-              className="w-12 mb-5  rounded-full "
-              src={logo}
-              alt="Profile"
-            />
-            <ul className="bg-gray-300 hidden rounded-lg absolute text-sm bottom-[-100%] border border-black w-28  group-hover:block text-center py-3 cursor-pointer">
-              <li
-                onClick={() => nevigate("/orders")}
-                className="mb-1 hover:text-white"
-              >
-                My orders
-              </li>
-              <li onClick={logout} className="hover:text-white">
-                Logout
-              </li>
-            </ul>
+          <div className="relative group rounded-full flex flex-col items-center justify-center">
+            <div className="relative">
+              <img
+                className="w-12 h-12 rounded-full shadow-lg ring-2 ring-[#E9AB54]/30 hover:ring-[#E9AB54]/60 transition-all duration-300"
+                src={logo}
+                alt="Profile"
+              />
+              <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
+            </div>
+            <div className="bg-white shadow-xl rounded-xl absolute text-sm top-16 border border-gray-100 w-36 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 overflow-hidden">
+              <div className="py-2">
+                <div
+                  onClick={() => nevigate("/orders")}
+                  className="px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors duration-200 flex items-center gap-2"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                  </svg>
+                  My Orders
+                </div>
+                <div
+                  onClick={logout}
+                  className="px-4 py-3 hover:bg-red-50 hover:text-red-600 cursor-pointer transition-colors duration-200 flex items-center gap-2 border-t border-gray-100"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  </svg>
+                  Logout
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>
+
       {prod && (
-        <input
-          onChange={(e) => setSearchQuerry(e.target.value)}
-          className="py-1.5 w-full md:hidden border text-center rounded-full bg-transparent outline-none placeholder-gray-500 text-[#E9AB54] "
-          type="text"
-          placeholder="Search products"
-        />
-      ) }
-      <div className="flex sm:hidden gap-5 items-center">
-      <div
-          onClick={() => nevigate("/cart")}
-          className=" relative cursor-pointer"
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 14 14"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M.583.583h2.333l1.564 7.81a1.17 1.17 0 0 0 1.166.94h5.67a1.17 1.17 0 0 0 1.167-.94l.933-4.893H3.5m2.333 8.75a.583.583 0 1 1-1.167 0 .583.583 0 0 1 1.167 0m6.417 0a.583.583 0 1 1-1.167 0 .583.583 0 0 1 1.167 0"
-              stroke="#615fff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+        <div className="md:hidden w-full max-w-xs mx-4">
+          <div className="relative">
+            <input
+              onChange={(e) => setSearchQuerry(e.target.value)}
+              className="py-2.5 w-full border-2 border-[#DEF2F1] text-center rounded-full bg-[#DEF2F1]/30 outline-none placeholder-gray-500 text-[#E9AB54] font-medium focus:ring-2 focus:ring-[#E9AB54]/30 transition-all duration-300"
+              type="text"
+              placeholder="Search products"
             />
-          </svg>
-          <button className="absolute -top-2 -right-3 text-xs text-black bg-[#E9AB54] w-[18px] h-[18px] rounded-full">
+          </div>
+        </div>
+      )}
+
+      <div className="flex sm:hidden gap-4 items-center">
+        <div
+          onClick={() => nevigate("/cart")}
+          className="relative cursor-pointer group"
+        >
+          <div className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="group-hover:scale-110 transition-transform duration-200"
+            >
+              <path
+                d="M.583.583h2.333l1.564 7.81a1.17 1.17 0 0 0 1.166.94h5.67a1.17 1.17 0 0 0 1.167-.94l.933-4.893H3.5m2.333 8.75a.583.583 0 1 1-1.167 0 .583.583 0 0 1 1.167 0m6.417 0a.583.583 0 1 1-1.167 0 .583.583 0 0 1 1.167 0"
+                stroke="#615fff"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          <div className="absolute -top-1 -right-1 text-xs text-white bg-[#E9AB54] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-lg">
             {getCartItems()}
-          </button>
+          </div>
         </div>
 
-      <button
+        <button
           onClick={() => (open ? setOpen(false) : setOpen(true))}
           aria-label="Menu"
-          className="sm:hidden"
+          className="sm:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200 group"
         >
-          {/* Menu Icon SVG */}
-          <svg
-            width="21"
-            height="15"
-            viewBox="0 0 21 15"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect width="21" height="1.5" rx=".75" fill="#426287" />
-            <rect x="8" y="6" width="13" height="1.5" rx=".75" fill="#426287" />
-            <rect
-              x="6"
-              y="13"
-              width="15"
-              height="1.5"
-              rx=".75"
-              fill="#426287"
-            />
-          </svg>
+          <div className="space-y-1.5">
+            <div className={`w-6 h-0.5 bg-[#426287] transition-all duration-300 ${open ? 'rotate-45 translate-y-2' : ''}`}></div>
+            <div className={`w-6 h-0.5 bg-[#426287] transition-all duration-300 ${open ? 'opacity-0' : ''}`}></div>
+            <div className={`w-6 h-0.5 bg-[#426287] transition-all duration-300 ${open ? '-rotate-45 -translate-y-2' : ''}`}></div>
+          </div>
         </button>
       </div>
-        
-       
-     
 
       {/* Mobile Menu */}
-
       <div
-        className={`absolute left-0 w-full bg-white z-10 shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden transition-all duration-200 ease-in-out
-    ${
-      open
-        ? "flex top-[120px] opacity-100 pointer-events-auto"
-        : "top-0 opacity-0 pointer-events-none flex"
-    }
-  `}
+        className={`absolute left-0 w-full bg-white/95 backdrop-blur-md z-10 shadow-xl py-6 flex-col items-start gap-4 px-6 text-sm md:hidden transition-all duration-300 ease-in-out rounded-b-2xl border-t border-gray-200
+          ${
+            open
+              ? "flex top-[100%] opacity-100 pointer-events-auto transform translate-y-0"
+              : "top-[80%] opacity-0 pointer-events-none flex transform -translate-y-4"
+          }
+        `}
       >
-        
-
-        <NavLink to={"/"} onClick={() => setOpen(false)}>
-          Home
+        <NavLink 
+          to={"/"} 
+          onClick={() => setOpen(false)}
+          className="hover:text-[#E9AB54] transition-colors duration-200 py-2 font-medium"
+        >
+          🏠 Home
         </NavLink>
-        <NavLink to={"/product"} onClick={() => setOpen(false)}>
-          Special Offers
+        <NavLink 
+          to={"/product"} 
+          onClick={() => setOpen(false)}
+          className="hover:text-[#E9AB54] transition-colors duration-200 py-2 font-medium"
+        >
+          ⭐ Special Offers
         </NavLink>
-        <NavLink to={"/seller"} onClick={() => setOpen(false)}>
-          About
+        <NavLink 
+          to={"/seller"} 
+          onClick={() => setOpen(false)}
+          className="hover:text-[#E9AB54] transition-colors duration-200 py-2 font-medium"
+        >
+          ℹ️ About
         </NavLink>
         {User && (
-          <NavLink to={"/orders"} onClick={() => setOpen(false)}>
-            My Orders
+          <NavLink 
+            to={"/orders"} 
+            onClick={() => setOpen(false)}
+            className="hover:text-[#E9AB54] transition-colors duration-200 py-2 font-medium"
+          >
+            📦 My Orders
           </NavLink>
         )}
+        <div className="w-full h-px bg-gray-200 my-2"></div>
         {!User ? (
           <button
             onClick={() => {
               setOpen(false);
               setshowUserLogin(true);
             }}
-            className="cursor-pointer px-6 py-2 mt-2 bg-[#E9AB54] hover:bg-[#d8b27d] transition text-white rounded-full text-sm"
+            className="cursor-pointer px-6 py-3 bg-[#E9AB54] hover:bg-[#E9AB54]/90 hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-white rounded-full text-sm font-semibold shadow-md"
           >
             Login
           </button>
         ) : (
           <button
             onClick={logout}
-            className="cursor-pointer px-6 py-2 mt-2 bg-[#E9AB54] hover:bg-[#d8b27d] transition text-white rounded-full text-sm"
+            className="cursor-pointer px-6 py-3 bg-red-500 hover:bg-red-600 hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-white rounded-full text-sm font-semibold shadow-md"
           >
             Log Out
           </button>

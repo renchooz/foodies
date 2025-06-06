@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { myOrders } from "../products";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -8,9 +7,12 @@ const MyOrders = () => {
 
   const fetchOrders = async () => {
     try {
-      const { data } = await axios.get("https://foodies-backend-mu0d.onrender.com/api/orders/user",{
-  withCredentials: true,
-});
+      const { data } = await axios.get(
+        "https://foodies-backend-mu0d.onrender.com/api/orders/user",
+        {
+          withCredentials: true,
+        }
+      );
       if (data.status) {
         setOrders(data.orders);
       }
@@ -18,7 +20,7 @@ const MyOrders = () => {
       toast.error(error.message);
     }
   };
-  console.log(Orders);
+
   useEffect(() => {
     fetchOrders();
   }, []);
@@ -43,7 +45,7 @@ const MyOrders = () => {
               </p>
               <p>
                 <span className="font-semibold text-gray-800">Date:</span>{" "}
-                {order.createdAt}
+                {new Date(order.createdAt).toLocaleString()}
               </p>
               <p>
                 <span className="font-semibold text-gray-800">Payment:</span>{" "}
@@ -87,9 +89,15 @@ const MyOrders = () => {
                   />
                   <span>{product.quantity}</span>
                   <span>₹{product.product.offerPrice}</span>
-                  <span className="font-medium">₹{order.amount}</span>
+                  <span className="font-medium">
+                    ₹{product.quantity * product.product.offerPrice}
+                  </span>
                 </div>
               ))}
+
+              <div className="text-right mt-4 font-bold text-lg text-gray-800">
+                Total Amount: ₹{order.amount}
+              </div>
             </div>
           </div>
         ))}

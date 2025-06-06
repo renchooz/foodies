@@ -1,16 +1,13 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { 
-  LogOut, 
+ 
   ShoppingBag, 
-  Mail, 
-  Bell, 
+  
   Lock, 
-  MapPin, 
-  Languages, 
+ 
   CreditCard, 
-  Users, 
-  FileText, 
+  
   ChevronRight 
 } from "lucide-react";
 import { useAppContext } from "../context/AppContext";
@@ -74,12 +71,15 @@ const Profile = () => {
         <div className="w-24 h-24 rounded-full bg-orange-400 overflow-hidden mb-4">
           {/* Profile image placeholder */}
           <img 
-            src="/api/placeholder/96/96" 
+            src="https://cdn2.iconfinder.com/data/icons/business-hr-and-recruitment/100/account_blank_face_dummy_human_mannequin_profile_user_-512.png" 
             alt="Profile" 
             className="w-full h-full object-cover" 
           />
         </div>
+        <div className="w-[100%]text-center">
         <h2 className="text-2xl font-semibold">{User.name}</h2>
+        <h2 className="text-2xl font-semibold">{User.phone}</h2>
+</div>
       </div>
 
       {/* Menu items */}
