@@ -43,6 +43,6 @@ jobs:
 
       - name: Push to dockerHub
         run: |
-          docker push ${{ vars.DOCKERHUB_USERNAME }}/foodies-backend:${{ github.sha }}
-          docker push ${{ vars.DOCKERHUB_USERNAME }}/foodies-frontend:${{ github.sha }}
+          docker push ${{ vars.DOCKERHUB_USERNAME }}/foodies-backend:latest
+          docker push ${{ vars.DOCKERHUB_USERNAME }}/foodies-frontend:latest
 
