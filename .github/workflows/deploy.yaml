@@ -22,8 +22,7 @@ jobs:
           echo "NODE_ENV=${{ secrets.NODE_ENV }}" >> server/.env
           echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> server/.env
           echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> server/.env
-          echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >>
-          server/.env
+          echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> server/.env
 
       - name: build frontend
         run: docker build -t frontend ./client
