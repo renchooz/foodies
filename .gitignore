@@ -4,6 +4,7 @@ client/dist/
 
 
 # Env files
-*.env
-*.env*
-**/.env
+
+.env
+.env.*
+!.env.example
