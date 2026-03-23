@@ -1,0 +1,49 @@
+name: Foodies CI/CD
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: checkout code
+        uses: actions/checkout@v4 
+
+      - name: create backend env
+        run: |
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> server/.env 
+          echo "MONGODB_URL=${{ secrets.MONGODB_URL }}" >> server/.env
+          echo "SELLER_EMAIL=${{ secrets.SELLER_EMAIL }}" >> server/.env
+          echo "SELLER_PASSWORD=${{ secrets.SELLER_PASSWORD }}" >> server/.env
+          echo "NODE_ENV=${{ secrets.NODE_ENV }}" >> server/.env
+          echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> server/.env
+          echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> server/.env
+          echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >>
+          server/.env
+
+      - name: build frontend
+        run: docker build -t frontend ./client
+
+      - name: build backend
+        run: docker build -t backend ./server
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}    
+
+      - name: Tag images
+        run: |
+          docker tag backend ${{ vars.DOCKERHUB_USERNAME }}/foodies-backend:latest
+          docker tag frontend ${{ vars.DOCKERHUB_USERNAME }}/foodies-frontend:latest
+
+      - name: Push to dockerHub
+        run: |
+          docker push ${{ vars.DOCKERHUB_USERNAME }}/foodies-backend:latest
+          docker push ${{ vars.DOCKERHUB_USERNAME }}/foodies-frontend:latest
+
