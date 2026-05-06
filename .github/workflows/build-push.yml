@@ -1,11 +1,10 @@
-name: Foodies CI/CD
+name: Foodies CI
 
 on:
-  push:
-    branches: ["main"]
+  workflow_call:
 
 jobs:
-  build-and-deploy:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:

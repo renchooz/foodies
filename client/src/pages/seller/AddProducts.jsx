@@ -5,6 +5,9 @@ import toast from "react-hot-toast";
 
 const AddProducts = () => {
   const { categories } = useAppContext();
+  const backendUrl =
+    import.meta.env.VITE_BACKEND_URL ||
+    "https://foodies-backend-mu0d.onrender.com";
 
   const [file, setFile] = useState(null);
   const [name, setName] = useState("");
@@ -29,7 +32,7 @@ const AddProducts = () => {
 
     try {
       const { data } = await axios.post(
-        "https://foodies-backend-mu0d.onrender.com/api/product/add",
+        `${backendUrl}/api/product/add`,
         formData,{
   withCredentials: true,
 }
