@@ -21,8 +21,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}  
           script: |
             sudo apt-get update && sudo apt-get install -y docker.io
-            sudo usermod -aG docker $USER && newgrp docker
-            git clone https://github.com/renchooz/foodies.git
+            sudo usermod -aG docker ubuntu && newgrp docker
+            cd foodies || git clone https://github.com/renchooz/foodies.git
             git pull
             cd foodies
             docker compose up -d 
