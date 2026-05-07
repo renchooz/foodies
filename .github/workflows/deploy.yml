@@ -24,13 +24,13 @@ jobs:
             sudo apt-get install -y docker.io docker-compose
             sudo usermod -aG docker ubuntu && newgrp docker
 
-           if [ ! -d "foodies" ]; then
+            if [ ! -d "foodies" ]; then
               git clone https://github.com/renchooz/foodies.git
             fi
 
             cd foodies
             git pull origin main
-            
+
             echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> server/.env 
             echo "MONGODB_URL=${{ secrets.MONGODB_URL }}" >> server/.env
             echo "SELLER_EMAIL=${{ secrets.SELLER_EMAIL }}" >> server/.env
