@@ -19,7 +19,7 @@ const SellerLogin = () => {
   e.preventDefault();
   try {
   const { data } = await axios.post(
-    `${backendUrl}/api/seller/login`,
+    `${backendUrl}/seller/login`,
     { email, password },
     {
       withCredentials: true,

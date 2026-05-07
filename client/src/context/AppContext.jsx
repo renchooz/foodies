@@ -25,7 +25,7 @@ export const AppContextProvider = ({ children }) => {
   const fetchSeller = async () => {
     try {
       const { data } = await axios.get(
-        `${backendUrl}/api/seller/is-auth`,
+        `${backendUrl}/seller/is-auth`,
         {
           withCredentials: true,
         }
@@ -44,7 +44,7 @@ export const AppContextProvider = ({ children }) => {
   const fetchUser = async () => {
     try {
       const { data } = await axios.get(
-        `${backendUrl}/api/user/is-auth`,
+        `${backendUrl}/user/is-auth`,
         {
           withCredentials: true,
         }
@@ -63,7 +63,7 @@ export const AppContextProvider = ({ children }) => {
   let fetchProducts = async () => {
     try {
       const { data } = await axios.get(
-        `${backendUrl}/api/product/list`,
+        `${backendUrl}/product/list`,
         {
           withCredentials: true,
         }
@@ -81,7 +81,7 @@ export const AppContextProvider = ({ children }) => {
     const CartUpdate = async () => {
       try {
         const { data } = await axios.post(
-          `${backendUrl}/api/cart/update`,
+          `${backendUrl}/cart/update`,
           {
             userId: User._id,
             cartItems: CardItems,

@@ -13,7 +13,7 @@ const ProductList = () => {
   const handleToggleStock = async (id, inStock) => {
     try {
       const { data } = await axios.post(
-        `${backendUrl}/api/product/stock`,
+        `${backendUrl}/product/stock`,
         { id, inStock },
         {
           withCredentials: true,

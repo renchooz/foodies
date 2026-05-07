@@ -48,7 +48,7 @@ const Cart = () => {
   const updateAdress = async () => {
     try {
       const { data } = await axios.get(
-        `${backendUrl}/api/address/get`,
+        `${backendUrl}/address/get`,
         {
           withCredentials: true,
         }
@@ -78,7 +78,7 @@ let PlaceOrder = async () => {
       }));
 
       const response = await axios.post(
-        `${backendUrl}/api/orders/cod`,
+        `${backendUrl}/orders/cod`,
         {
           address: selectedAdress,
           items: itemsArray,

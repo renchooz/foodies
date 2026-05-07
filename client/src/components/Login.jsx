@@ -23,7 +23,7 @@ const Login = () => {
 
     try {
       const { data } = await axios.post(
-        `${backendUrl}/api/user/${state}`,
+        `${backendUrl}/user/${state}`,
         { name, email, phone, password, otp, newPassword },
         { withCredentials: true }
       );

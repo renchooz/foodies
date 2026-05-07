@@ -23,6 +23,8 @@ services:
     build: ./client
     container_name: frontend_foodies
     restart: unless-stopped
+    env_file:
+      - ./client/.env
     ports:
       - "5173:80"
     depends_on:

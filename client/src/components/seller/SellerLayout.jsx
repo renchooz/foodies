@@ -20,7 +20,7 @@ const {setisSeller,nevigate,isSeller} = useAppContext()
     const logout = async()=>{
         try {
           const {data} = await axios.post(
-            `${backendUrl}/api/seller/logout`,
+            `${backendUrl}/seller/logout`,
             {},
             {
               withCredentials: true,

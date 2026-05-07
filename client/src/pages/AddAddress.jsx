@@ -31,7 +31,7 @@ const AddAddress = ({adress}) => {
     e.preventDefault();
     try {
       const {data} = await axios.post(
-        `${backendUrl}/api/address/add`,
+        `${backendUrl}/address/add`,
         formData,
         {
           withCredentials: true,

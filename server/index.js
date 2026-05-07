@@ -20,7 +20,7 @@ await connectCloudinary();
 
 // Middleware
 app.use(cors({
-  origin: ["http://localhost:5173", "https://melodious-marigold-cac143.netlify.app","http://34.235.171.29:5173"],
+  origin: ["http://localhost:5173", "https://melodious-marigold-cac143.netlify.app","http://34.235.171.29"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));

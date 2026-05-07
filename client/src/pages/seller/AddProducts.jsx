@@ -32,7 +32,7 @@ const AddProducts = () => {
 
     try {
       const { data } = await axios.post(
-        `${backendUrl}/api/product/add`,
+        `${backendUrl}/product/add`,
         formData,{
   withCredentials: true,
 }

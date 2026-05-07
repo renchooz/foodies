@@ -12,7 +12,7 @@ const MyOrders = () => {
   const fetchOrders = async () => {
     try {
       const { data } = await axios.get(
-        `${backendUrl}/api/orders/user`,
+        `${backendUrl}/orders/user`,
         {
           withCredentials: true,
         }
