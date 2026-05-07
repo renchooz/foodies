@@ -1,12 +1,4 @@
 services:
-  mongodb:
-    image: mongo:7
-    container_name: mongo_foodies
-    restart: unless-stopped
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
 
   backend:
     build: ./server
@@ -16,8 +8,6 @@ services:
       - ./server/.env
     ports:
       - "4000:4000"
-    depends_on:
-      - mongodb
 
   frontend:
     build: ./client
@@ -30,5 +20,3 @@ services:
     depends_on:
       - backend
 
-volumes:
-  mongo-data:
