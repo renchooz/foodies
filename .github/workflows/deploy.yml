@@ -9,21 +9,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-      # - name: Checkout code
-      #   uses: actions/checkout@v4 
-
       - name: Connect with ec2
-        uses: appleboy/ssh-action@v1.0.3 
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}  
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            sudo apt-get update
-            sudo apt-get install -y docker.io docker-compose
-            sudo usermod -aG docker ubuntu && newgrp docker
 
+            sudo apt-get update -y
+            sudo apt-get install -y docker.io docker-compose git
+
+            sudo systemctl start docker
+            sudo systemctl enable docker
+
+            # Clone if not exists
             if [ ! -d "foodies" ]; then
               git clone https://github.com/renchooz/foodies.git
             fi
@@ -31,23 +31,27 @@ jobs:
             cd foodies
             git pull origin main
 
-            echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> server/.env 
-            echo "MONGODB_URL=${{ secrets.MONGODB_URL }}" >> server/.env
-            echo "SELLER_EMAIL=${{ secrets.SELLER_EMAIL }}" >> server/.env
-            echo "SELLER_PASSWORD=${{ secrets.SELLER_PASSWORD }}" >> server/.env
-            echo "NODE_ENV=${{ secrets.NODE_ENV }}" >> server/.env
-            echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> server/.env
-            echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> server/.env
-            echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> server/.env
-            echo "VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}" >> client/.env
+            # Create server .env
+            cat > server/.env <<EOF
+JWT_SECRET=${{ secrets.JWT_SECRET }}
+MONGODB_URL=${{ secrets.MONGODB_URL }}
+SELLER_EMAIL=${{ secrets.SELLER_EMAIL }}
+SELLER_PASSWORD=${{ secrets.SELLER_PASSWORD }}
+NODE_ENV=${{ secrets.NODE_ENV }}
+CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}
+CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}
+CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}
+EOF
 
+            # Create client .env
+            cat > client/.env <<EOF
+VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
+EOF
 
-            
-            
+            # Check files
+            ls server
+            ls client
 
-            docker compose down 
-            docker compose up -d --build
-
-
-
-
+            # Docker deploy
+            sudo docker-compose down
+            sudo docker-compose up -d --build
