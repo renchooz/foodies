@@ -3,16 +3,21 @@ import { useAppContext } from "../../context/AppContext";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+const backendUrl =
+  import.meta.env.VITE_BACKEND_URL ||
+  "https://foodies-backend-mu0d.onrender.com";
+
 const ProductList = () => {
   const { product, fetchProducts } = useAppContext();
 
   const handleToggleStock = async (id, inStock) => {
     try {
       const { data } = await axios.post(
-        "https://foodies-backend-mu0d.onrender.com/api/product/stock",
-        { id, inStock },{
-  withCredentials: true,
-}
+        `${backendUrl}/api/product/stock`,
+        { id, inStock },
+        {
+          withCredentials: true,
+        }
       );
       if (data.status) {
         fetchProducts();

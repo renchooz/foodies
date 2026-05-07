@@ -5,6 +5,9 @@ import toast from "react-hot-toast";
 import axios from "axios";
 
 axios.defaults.withCredentials = true;
+const backendUrl =
+  import.meta.env.VITE_BACKEND_URL ||
+  "https://foodies-backend-mu0d.onrender.com";
 
 export const AppContext = createContext();
 
@@ -22,7 +25,7 @@ export const AppContextProvider = ({ children }) => {
   const fetchSeller = async () => {
     try {
       const { data } = await axios.get(
-        "https://foodies-backend-mu0d.onrender.com/api/seller/is-auth",
+        `${backendUrl}/api/seller/is-auth`,
         {
           withCredentials: true,
         }
@@ -41,7 +44,7 @@ export const AppContextProvider = ({ children }) => {
   const fetchUser = async () => {
     try {
       const { data } = await axios.get(
-        "https://foodies-backend-mu0d.onrender.com/api/user/is-auth",
+        `${backendUrl}/api/user/is-auth`,
         {
           withCredentials: true,
         }
@@ -60,7 +63,7 @@ export const AppContextProvider = ({ children }) => {
   let fetchProducts = async () => {
     try {
       const { data } = await axios.get(
-        "https://foodies-backend-mu0d.onrender.com/api/product/list",
+        `${backendUrl}/api/product/list`,
         {
           withCredentials: true,
         }
@@ -78,7 +81,7 @@ export const AppContextProvider = ({ children }) => {
     const CartUpdate = async () => {
       try {
         const { data } = await axios.post(
-          "https://foodies-backend-mu0d.onrender.com/api/cart/update",
+          `${backendUrl}/api/cart/update`,
           {
             userId: User._id,
             cartItems: CardItems,

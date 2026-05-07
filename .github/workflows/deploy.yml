@@ -31,13 +31,14 @@ jobs:
             echo "SELLER_EMAIL=${{ secrets.SELLER_EMAIL }}" >> server/.env
             echo "SELLER_PASSWORD=${{ secrets.SELLER_PASSWORD }}" >> server/.env
             echo "NODE_ENV=${{ secrets.NODE_ENV }}" >> server/.env
-            echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> server/.env~
+            echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> server/.env
             echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> server/.env
             echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> server/.env
 
 
-
+            
             git pull
+            docker compose down 
             docker compose up -d 
 
 

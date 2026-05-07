@@ -6,6 +6,10 @@ import { useAppContext } from "../context/AppContext";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+const backendUrl =
+  import.meta.env.VITE_BACKEND_URL ||
+  "https://foodies-backend-mu0d.onrender.com";
+
 const NavBar = () => {
   const [open, setOpen] = React.useState(false);
   let {
@@ -22,9 +26,13 @@ const NavBar = () => {
 
   let logout = async () => {
     try {
-      const {data} = await axios.post("https://foodies-backend-mu0d.onrender.com/api/user/logout",{
-  withCredentials: true,
-})
+      const {data} = await axios.post(
+        `${backendUrl}/api/user/logout`,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
       if(data.status){
         setUser(null)
         toast.success(data.message)

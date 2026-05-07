@@ -3,6 +3,10 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAppContext } from '../context/AppContext';
 
+const backendUrl =
+  import.meta.env.VITE_BACKEND_URL ||
+  "https://foodies-backend-mu0d.onrender.com";
+
 const AddAddress = ({adress}) => {
   const {nevigate} = useAppContext()
   const [formData, setFormData] = useState({
@@ -26,11 +30,13 @@ const AddAddress = ({adress}) => {
   const handleSubmit =async (e) => {
     e.preventDefault();
     try {
-      const {data} = await axios.post("https://foodies-backend-mu0d.onrender.com/api/address/add",
-      formData,{
-  withCredentials: true,
-}
-      )
+      const {data} = await axios.post(
+        `${backendUrl}/api/address/add`,
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
       if(data.status){
         toast.success(data.message)
         adress(false)

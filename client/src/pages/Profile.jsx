@@ -13,6 +13,10 @@ import {
 import { useAppContext } from "../context/AppContext";
 import toast from "react-hot-toast";
 import axios from "axios";
+
+const backendUrl =
+  import.meta.env.VITE_BACKEND_URL ||
+  "https://foodies-backend-mu0d.onrender.com";
 import Login from "../components/Login";
 
 const Profile = () => {
@@ -22,7 +26,7 @@ const Profile = () => {
   const logout = async () => {
     try {
       const { data } = await axios.post(
-        "https://foodies-backend-mu0d.onrender.com/api/user/logout",
+        `${backendUrl}/api/user/logout`,
         {},
         { withCredentials: true }
       );

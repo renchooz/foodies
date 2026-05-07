@@ -3,14 +3,21 @@ import { dummyOrders } from '../../products';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
+const backendUrl =
+  import.meta.env.VITE_BACKEND_URL ||
+  "https://foodies-backend-mu0d.onrender.com";
+
 const Orders = () => {
   const [orders, setOrders] = useState([]);
 
   const fetchOrders = async() => {
   try {
-     const {data} = await axios.get("https://foodies-backend-mu0d.onrender.com/api/orders/admin",{
-  withCredentials: true,
-})
+     const {data} = await axios.get(
+      `${backendUrl}/api/orders/admin`,
+      {
+        withCredentials: true,
+      }
+    );
    if(data.status){
     setOrders(data.orders)
    }

@@ -3,6 +3,10 @@ import { useAppContext } from "../context/AppContext";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+const backendUrl =
+  import.meta.env.VITE_BACKEND_URL ||
+  "https://foodies-backend-mu0d.onrender.com";
+
 const Login = () => {
   const { setshowUserLogin, setUser, setCardItems, nevigate } = useAppContext();
 
@@ -19,7 +23,7 @@ const Login = () => {
 
     try {
       const { data } = await axios.post(
-        `https://foodies-backend-mu0d.onrender.com/api/user/${state}`,
+        `${backendUrl}/api/user/${state}`,
         { name, email, phone, password, otp, newPassword },
         { withCredentials: true }
       );

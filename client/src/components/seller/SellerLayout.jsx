@@ -3,6 +3,10 @@ import { useAppContext } from "../../context/AppContext";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+const backendUrl =
+  import.meta.env.VITE_BACKEND_URL ||
+  "https://foodies-backend-mu0d.onrender.com";
+
 const SellerLayout = () => {
 
  
@@ -15,9 +19,13 @@ const {setisSeller,nevigate,isSeller} = useAppContext()
     ];
     const logout = async()=>{
         try {
-          const {data} = await axios.post("https://foodies-backend-mu0d.onrender.com/api/seller/logout", {}, {
-  withCredentials: true,
-})
+          const {data} = await axios.post(
+            `${backendUrl}/api/seller/logout`,
+            {},
+            {
+              withCredentials: true,
+            }
+          );
           if(data.status){
             setisSeller(false)
             toast.success(data.message)

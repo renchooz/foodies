@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+const backendUrl =
+  import.meta.env.VITE_BACKEND_URL ||
+  "https://foodies-backend-mu0d.onrender.com";
+
 const MyOrders = () => {
   const [Orders, setOrders] = useState([]);
 
   const fetchOrders = async () => {
     try {
       const { data } = await axios.get(
-        "https://foodies-backend-mu0d.onrender.com/api/orders/user",
+        `${backendUrl}/api/orders/user`,
         {
           withCredentials: true,
         }

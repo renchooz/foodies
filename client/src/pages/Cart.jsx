@@ -8,6 +8,10 @@ import AddAddress from "./AddAddress";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+const backendUrl =
+  import.meta.env.VITE_BACKEND_URL ||
+  "https://foodies-backend-mu0d.onrender.com";
+
 const Cart = () => {
   const {
     product,
@@ -43,9 +47,12 @@ const Cart = () => {
 
   const updateAdress = async () => {
     try {
-      const { data } = await axios.get("https://foodies-backend-mu0d.onrender.com/api/address/get",{
-  withCredentials: true,
-});
+      const { data } = await axios.get(
+        `${backendUrl}/api/address/get`,
+        {
+          withCredentials: true,
+        }
+      );
       if (data.status) {
         setAddress(data.addresses);
         
@@ -71,10 +78,10 @@ let PlaceOrder = async () => {
       }));
 
       const response = await axios.post(
-        "https://foodies-backend-mu0d.onrender.com/api/orders/cod",
+        `${backendUrl}/api/orders/cod`,
         {
           address: selectedAdress,
-          items: itemsArray, // ✅ now it's iterable
+          items: itemsArray,
         },
         { withCredentials: true }
       );

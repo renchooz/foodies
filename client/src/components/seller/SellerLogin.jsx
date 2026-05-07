@@ -4,6 +4,9 @@ import { useAppContext } from "../../context/AppContext";
 import toast from "react-hot-toast";
 import axios from "axios";
 
+const backendUrl =
+  import.meta.env.VITE_BACKEND_URL ||
+  "https://foodies-backend-mu0d.onrender.com";
 
 const SellerLogin = () => {
   const { nevigate, isSeller, setisSeller, } = useAppContext();
@@ -15,9 +18,13 @@ const SellerLogin = () => {
   const submitHandler = async (e) => {
   e.preventDefault();
   try {
-    const { data } = await axios.post("https://foodies-backend-mu0d.onrender.com/api/seller/login", { email, password },{
-  withCredentials: true,
-});
+  const { data } = await axios.post(
+    `${backendUrl}/api/seller/login`,
+    { email, password },
+    {
+      withCredentials: true,
+    }
+  );
 
     if (data.status) {
       setisSeller(true);
