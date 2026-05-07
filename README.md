@@ -87,7 +87,7 @@ Base URL: `http://localhost:4000`
 - `POST /logout` (clears `sellerToken` cookie)
 
 ### Products — `/api/product`
-
+--
 - `POST /add` (seller-only, `multipart/form-data`)
   Fields: `image` (file), `productData` (JSON string)
 - `GET /list`
