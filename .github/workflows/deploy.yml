@@ -23,9 +23,14 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y docker.io docker-compose
             sudo usermod -aG docker ubuntu && newgrp docker
-            cd foodies || git clone https://github.com/renchooz/foodies.git
 
+           if [ ! -d "foodies" ]; then
+              git clone https://github.com/renchooz/foodies.git
+            fi
 
+            cd foodies
+            git pull origin main
+            
             echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> server/.env 
             echo "MONGODB_URL=${{ secrets.MONGODB_URL }}" >> server/.env
             echo "SELLER_EMAIL=${{ secrets.SELLER_EMAIL }}" >> server/.env
@@ -38,9 +43,10 @@ jobs:
 
 
             
-            git pull
+            
+
             docker compose down 
-            docker compose up -d 
+            docker compose up -d --build
 
 
 
