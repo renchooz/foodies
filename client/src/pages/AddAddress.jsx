@@ -2,9 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAppContext } from '../context/AppContext';
-
-const backendUrl =
-  import.meta.env.VITE_BACKEND_URL;
+import { backendUrl } from "../config/backendUrl";
 
 const AddAddress = ({adress}) => {
   const {nevigate} = useAppContext()
@@ -78,3 +76,4 @@ const AddAddress = ({adress}) => {
 };
 
 export default AddAddress;
+

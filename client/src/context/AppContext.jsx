@@ -3,11 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { foodItems, whyWeAreBest } from "../products";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { backendUrl } from "../config/backendUrl";
 
 axios.defaults.withCredentials = true;
-const backendUrl =
-  import.meta.env.VITE_BACKEND_URL;
-
 export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
@@ -195,3 +193,4 @@ export const AppContextProvider = ({ children }) => {
 export const useAppContext = () => {
   return useContext(AppContext);
 };
+

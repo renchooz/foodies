@@ -3,9 +3,7 @@ import React, {  useEffect, useState } from "react";
 import { useAppContext } from "../../context/AppContext";
 import toast from "react-hot-toast";
 import axios from "axios";
-
-const backendUrl =
-  import.meta.env.VITE_BACKEND_URL;
+import { backendUrl } from "../../config/backendUrl";
 
 const SellerLogin = () => {
   const { nevigate, isSeller, setisSeller, } = useAppContext();
@@ -74,6 +72,7 @@ const SellerLogin = () => {
           type="password"
           value={password}
           placeholder="Enter your password"
+          autoComplete="current-password"
           required
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#E9AB54]"
         />
@@ -90,3 +89,4 @@ const SellerLogin = () => {
 };
 
 export default SellerLogin;
+

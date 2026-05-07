@@ -2,9 +2,7 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
 import axios from "axios";
 import toast from "react-hot-toast";
-
-const backendUrl =
-  import.meta.env.VITE_BACKEND_URL;
+import { backendUrl } from "../../config/backendUrl";
 
 const SellerLayout = () => {
 

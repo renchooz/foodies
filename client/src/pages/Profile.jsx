@@ -14,9 +14,8 @@ import { useAppContext } from "../context/AppContext";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-const backendUrl =
-  import.meta.env.VITE_BACKEND_URL;
 import Login from "../components/Login";
+import { backendUrl } from "../config/backendUrl";
 
 const Profile = () => {
   const { setUser, User, setCardItems } = useAppContext();

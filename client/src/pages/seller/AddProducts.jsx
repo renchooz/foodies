@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import { useAppContext } from "../../context/AppContext";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { backendUrl } from "../../config/backendUrl";
 
 const AddProducts = () => {
   const { categories } = useAppContext();
-  const backendUrl =
-    import.meta.env.VITE_BACKEND_URL;
-
-  const [file, setFile] = useState(null);
+    const [file, setFile] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -192,3 +190,4 @@ const AddProducts = () => {
 };
 
 export default AddProducts;
+

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-
-const backendUrl =
-  import.meta.env.VITE_BACKEND_URL;
+import { backendUrl } from "../config/backendUrl";
 
 const MyOrders = () => {
   const [Orders, setOrders] = useState([]);
@@ -110,3 +108,4 @@ const MyOrders = () => {
 };
 
 export default MyOrders;
+

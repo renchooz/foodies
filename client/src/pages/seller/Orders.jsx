@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { dummyOrders } from '../../products';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-
-const backendUrl =
-  import.meta.env.VITE_BACKEND_URL;
+import { backendUrl } from "../../config/backendUrl";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -106,3 +104,4 @@ const Orders = () => {
 };
 
 export default Orders;
+

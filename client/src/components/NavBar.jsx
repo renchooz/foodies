@@ -5,9 +5,7 @@ import profile from "/logo.png";
 import { useAppContext } from "../context/AppContext";
 import axios from "axios";
 import toast from "react-hot-toast";
-
-const backendUrl =
-  import.meta.env.VITE_BACKEND_URL;
+import { backendUrl } from "../config/backendUrl";
 
 const NavBar = () => {
   const [open, setOpen] = React.useState(false);

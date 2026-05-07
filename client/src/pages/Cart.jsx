@@ -7,9 +7,7 @@ import { dummyAddresses } from "../products";
 import AddAddress from "./AddAddress";
 import axios from "axios";
 import toast from "react-hot-toast";
-
-const backendUrl =
-  import.meta.env.VITE_BACKEND_URL;
+import { backendUrl } from "../config/backendUrl";
 
 const Cart = () => {
   const {
@@ -299,3 +297,4 @@ let PlaceOrder = async () => {
   ) : null;
 };
 export default Cart;
+

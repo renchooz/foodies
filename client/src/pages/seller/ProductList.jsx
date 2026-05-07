@@ -2,9 +2,7 @@ import React from "react";
 import { useAppContext } from "../../context/AppContext";
 import axios from "axios";
 import toast from "react-hot-toast";
-
-const backendUrl =
-  import.meta.env.VITE_BACKEND_URL;
+import { backendUrl } from "../../config/backendUrl";
 
 const ProductList = () => {
   const { product, fetchProducts } = useAppContext();
@@ -100,3 +98,4 @@ const ProductList = () => {
 };
 
 export default ProductList;
+

@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { useAppContext } from "../context/AppContext";
 import axios from "axios";
 import toast from "react-hot-toast";
-
-const backendUrl =
-  import.meta.env.VITE_BACKEND_URL;
+import { backendUrl } from "../config/backendUrl";
 
 const Login = () => {
   const { setshowUserLogin, setUser, setCardItems, nevigate } = useAppContext();
@@ -127,6 +125,7 @@ const Login = () => {
                 placeholder="Enter password"
                 className="border border-gray-200 rounded w-full p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#E9AB54]"
                 type="password"
+                autoComplete="current-password"
                 required
               />
             </div>
@@ -186,6 +185,7 @@ const Login = () => {
                 placeholder="Enter new password"
                 className="border border-gray-200 rounded w-full p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#E9AB54]"
                 type="password"
+                autoComplete="new-password"
                 required
               />
             </div>
@@ -255,3 +255,4 @@ const Login = () => {
 };
 
 export default Login;
+
