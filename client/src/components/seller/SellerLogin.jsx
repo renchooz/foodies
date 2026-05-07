@@ -5,8 +5,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 
 const backendUrl =
-  import.meta.env.VITE_BACKEND_URL ||
-  "https://foodies-backend-mu0d.onrender.com";
+  import.meta.env.VITE_BACKEND_URL;
 
 const SellerLogin = () => {
   const { nevigate, isSeller, setisSeller, } = useAppContext();

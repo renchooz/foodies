@@ -7,8 +7,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const backendUrl =
-  import.meta.env.VITE_BACKEND_URL ||
-  "https://foodies-backend-mu0d.onrender.com";
+  import.meta.env.VITE_BACKEND_URL;
 
 const NavBar = () => {
   const [open, setOpen] = React.useState(false);

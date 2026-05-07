@@ -6,8 +6,7 @@ import toast from "react-hot-toast";
 const AddProducts = () => {
   const { categories } = useAppContext();
   const backendUrl =
-    import.meta.env.VITE_BACKEND_URL ||
-    "https://foodies-backend-mu0d.onrender.com";
+    import.meta.env.VITE_BACKEND_URL;
 
   const [file, setFile] = useState(null);
   const [name, setName] = useState("");

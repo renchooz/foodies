@@ -6,8 +6,7 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true;
 const backendUrl =
-  import.meta.env.VITE_BACKEND_URL ||
-  "https://foodies-backend-mu0d.onrender.com";
+  import.meta.env.VITE_BACKEND_URL;
 
 export const AppContext = createContext();
 

@@ -4,8 +4,7 @@ import toast from 'react-hot-toast';
 import { useAppContext } from '../context/AppContext';
 
 const backendUrl =
-  import.meta.env.VITE_BACKEND_URL ||
-  "https://foodies-backend-mu0d.onrender.com";
+  import.meta.env.VITE_BACKEND_URL;
 
 const AddAddress = ({adress}) => {
   const {nevigate} = useAppContext()
