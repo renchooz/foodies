@@ -1,4 +1,4 @@
-# Foodies (Client + Server)
+# Foodies (Client + Server) AWS LIVE = 34.235.171.29
 
 Full-stack food ordering app with:
 - Customer auth (JWT in HTTP-only cookie)
