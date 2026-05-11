@@ -1,7 +1,8 @@
 name: Foodies CI
 
 on:
-  workflow_call:
+  push:
+    branches: ["main"]
 
 jobs:
   build-and-push:
