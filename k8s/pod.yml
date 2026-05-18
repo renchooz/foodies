@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend-foodies
+  namespace: foodies-ns
+spec:
+  containers:
+  - name: frontend-foodies
+    image: renchooz/foodies-frontend:latest
+    ports:
+    - containerPort: 80
+---
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend-foodies
+  namespace: foodies-ns
+spec:
+  containers:
+  - name: backend-foodies
+    image: renchooz/foodies-backend:latest
+    ports:
+    - containerPort: 4000

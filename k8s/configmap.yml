@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: foodies-configmap
+  namespace: foodies-ns
+data:
+  SELLER_EMAIL: renchoo123@gmail.com
+  NODE_ENV: production
+  VITE_BACKEND_URL: /api

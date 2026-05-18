@@ -1,0 +1,120 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: foodies-ns
+  labels:
+    app: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      initContainers:
+      - name: wait-for-backend
+        image: busybox
+        command: ["sh","-c","until nc -z backend-foodies 4000; do sleep 2; done"]
+        resources:
+          requests:
+            memory: "16Mi"
+            cpu: "10m"
+          limits:
+            memory: "32Mi"
+            cpu: "50m"
+      containers:
+      - name: foodies-frontend
+        image: renchooz/foodies-frontend:latest
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m" 
+         
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 20
+          periodSeconds: 10
+
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5    
+        ports:
+        - containerPort: 80
+        envFrom:
+          - configMapRef:
+              name: foodies-configmap
+
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: foodies-ns
+  labels:
+    app: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: foodies-backend
+        image: renchooz/foodies-backend:latest
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 4000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 4000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+
+        ports:
+        - containerPort: 4000
+        env:
+        - name: NODE_OPTIONS
+          value: "--dns-result-order=ipv4first"
+        envFrom:
+          - configMapRef:
+              name: foodies-configmap
+          - secretRef:
+              name: foodies-secret
+        volumeMounts:
+          - name: foodies-storage
+            mountPath: /app/uploads
+      volumes:
+      - name: foodies-storage
+        persistentVolumeClaim:
+          claimName: foodies-pvc      
