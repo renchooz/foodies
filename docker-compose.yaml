@@ -2,7 +2,7 @@ services:
 
   backend:
     build: ./server
-    container_name: backend_foodies
+    container_name: backend-foodies
     restart: unless-stopped
     env_file:
       - ./server/.env
